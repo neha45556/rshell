@@ -1,3 +1,8 @@
 # CS 100 Programming Project
-> Winter 2019 
-> Author: Marc Jimenez (862049962) , Neha Gupta (862049507)
+ Winter 2019 
+ 
+> Authors: Marc Jimenez (862049962) , Neha Gupta (862049507)
+
+# Introduction
+
+This program will print out a command prompt from which it will read in a line of commands and connectors from standard input. It will do this through a composite pattern from which the classes known as ** __ Argument List __ ** , ** __ Connector __ ** and ** __ Command __ ** are derived from a shared base class known as ** __ Base __ ** .
