@@ -1,2 +1,3 @@
 # CS 100 Programming Project
-> Author: Marc Jimenez, Neha Gupta
+> Winter 2019 
+> Author: Marc Jimenez (862049962) , Neha Gupta (862049507)
