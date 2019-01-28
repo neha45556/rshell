@@ -5,7 +5,7 @@
 
 # Introduction
 
-This program will print out a command prompt from which it will read in a line of commands and connectors from standard input. It will do this through a composite pattern from which the classes known as **_argumentList_** , **_connector_** and **_command_** are derived from a shared base interface class known as **_cmdline_** . It will then execute the approriate commands using **_fork**_, **_execvp**_, and **_waitpid**_. First our client will create an input through the use of the derived classes by creating specific objects through the use of the class's constructors. Those will then be read and executed upon and processed through our **_fork**_, **_execvp**_, and **_waitpid**_ commands.
+This program will print out a command prompt from which it will read in a line of commands and connectors from standard input. It will do this through a composite pattern from which the classes known as **_argumentList_** , **_connector_** and **_command_** are derived from a shared base interface class known as **_cmdline_** . It will then execute the approriate commands using **_fork**_, **_execvp**_, and **_waitpid**_ . First our client will create an input through the use of the derived classes by creating specific objects through the use of the class's constructors. Those will then be read and executed upon and processed through our **_fork**_, **_execvp**_, and **_waitpid**_ commands.
 
 # Diagram
 
