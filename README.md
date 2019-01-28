@@ -5,7 +5,7 @@
 
 # Introduction
 
-This program will print out a command prompt from which it will read in a line of commands and connectors from standard input. It will do this through a composite pattern from which the classes known as **_argumentList_** , **_connector_** and **_command_** are derived from a shared base interface class known as **_cmdline_** . It will then execute the approriate commands using **_fork**_, **_execvp**_, and **_waitpid**_ . First our client will create an input through the use of the derived classes by creating specific objects through the use of the class's constructors. Those will then be read and executed upon and processed through our **_fork**_, **_execvp**_, and **_waitpid**_ commands.
+This program will print out a command prompt from which it will read in a line of commands and connectors from standard input. It will do this through a composite pattern from which the classes known as **_argumentList_**, **_connector_** and **_command_** are derived from a shared base interface class known as **_cmdline_** . It will then execute the approriate commands using **_fork_**, **_execvp_**, and **_waitpid_** . First our client will create an input through the use of the derived classes by creating specific objects through the use of the class's constructors. Those will then be read and executed upon and processed through our **_fork_**, **_execvp_**, and **_waitpid_** commands.
 
 # Diagram
 
@@ -20,8 +20,10 @@ Each of the derived classes will hold an encapsulated pointer of type **_cmdline
 
 The class **_command_** will hold an extra encapsulated base pointer named _prev_ which will help us determine if a connector had been written in the command line before it. In its constructors it will first check if the _prev_ pointer exists and if so, then it will then run the **evaluate** function located in the **_connector_** class. 
 
-The class **_connector_** will point to the first **_commmand_** object located after the **_connector_** in the command line. It also will hold an extra encapsulated base pointer named _first_ that will point to the first **_command_** in the commandThen it will run its **evaluate** function which will, depending on its encapsulated string, will do different processes. If its a "&&" then the next command is exeuted only if the first command succeeds, if its a "||" then the next command is executed only if the first one fails, and if its a ";" then the next command is always executed. 
+The class **_connector_** will point to the first **_commmand_** object located after the **_connector_** in the command line. It also will hold an extra encapsulated base pointer named _first_ that will point to the first **_command_** in the command line. Then it will run its **evaluate** function which will, depending on its encapsulated string, will do different processes. If its a "&&" then the next command is exeuted only if the first command succeeds, if its a "||" then the next command is executed only if the first one fails, and if its a ";" then the next command is always executed. 
 
-The class **_
+The class **_argumentlist_** will hold many of the same things as the base class but in addition have a constructor that passes in a string. From that string we will set the encapsulated string variable equal to it.
+
+
 
 
