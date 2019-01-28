@@ -9,7 +9,7 @@ This program will print out a command prompt from which it will read in a line o
 
 # Diagram
 
-![sample UML Diagram](https://github.com/cs100/assignment-marc-jimenez-neha-gupta/images/UML Class Diagram.jpeg?raw=true)
+![sample UML Diagram](https://github.com/cs100/assignment-marc-jimenez-neha-gupta/master/images/UML Class Diagram.jpeg?raw=true)
 
 
 # Classes
