@@ -28,6 +28,15 @@ The class **_argumentList_** will hold many of the same things as the base class
 
 # Development and Testing Roadmap
 
+1. Create base class **_cmdline_** : Marc Jimenez
+2. Create derived class **_argumentList_** : Neha Gupta
+3. Create derived class **_connector_** : Neha Gupta
+4. Create derived class **_command_** : Marc Jimenez
+5. Write unit test single_command_tests.sh : Marc Jimenez
+6. Write unit test multiple_command_tests.sh : Neha Gupta
+7. Write unit test commented_command_tests.sh : Marc Jimenez
+8. Write unit test exit_command_tests.sh : Neha Gupta
+
 
 
 
