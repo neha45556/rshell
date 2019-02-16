@@ -5,12 +5,12 @@ using namespace std;
 void Input::getInput() {
     cout << "$ ";
     cin.getline(this->input, 100);
-    char copy[100];
-    for(int i = 0; i < 100; i++) {
-        copy[i] = input[i];
-    }
-    populateVector();
-    populateConnectors(copy);
+        char copy[100];
+        for(int i = 0; i < 100; i++) {
+            copy[i] = input[i];
+        }
+        populateVector();
+        populateConnectors(copy);
     // Execute* execute = new Execute();
     // int startOfCommand = 0;
     // int EndOfCommand = 0;

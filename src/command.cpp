@@ -10,7 +10,7 @@ Command::Command(vector<string > enteredVector) {
 }
 bool Command::findHashtag() {
     for (int i = 0; i < SingleCommand.size(); i++) {
-        cout << "Iterating through findHashtag" << endl;
+        //cout << "Iterating through findHashtag" << endl;
         size_t foundHashtag = SingleCommand.at(i).find("#");
         if (foundHashtag != string::npos) {
             return true;
@@ -18,30 +18,30 @@ bool Command::findHashtag() {
     }
 }
 void Command::deleteHashtag() {
-    cout << "Enters deleteHashtag" << endl;
+    //cout << "Enters deleteHashtag" << endl;
     for(int j = 0; j < SingleCommand.size(); j++) {
-        cout << "Iterating" << endl;
+        //cout << "Iterating" << endl;
         size_t foundHashtag = SingleCommand.at(j).find("#");
         if (foundHashtag != string::npos) {
-            cout << "Found hashtag" << endl;
+            //cout << "Found hashtag" << endl;
             for (int k = SingleCommand.size() - 1; k > j; k--) {
-                cout << "pop" << endl;
+                //cout << "pop" << endl;
                 SingleCommand.pop_back();
             }
-            cout << j << endl;
+            //cout << j << endl;
             string str = SingleCommand.at(j);
-            cout << str << endl;
+            //cout << str << endl;
             //boost::erase_all(str, "#");
             SingleCommand.at(j).erase(std::remove(SingleCommand.at(j).begin(), SingleCommand.at(j).end(), '#'), SingleCommand.at(j).end());
-            cout << SingleCommand.at(j) << endl;
+            //cout << SingleCommand.at(j) << endl;
             // str.erase(foundHashtag, string::npos);
         }
     }
 }
 void Command::printCommand() {
     for (int i = 0; i < this->SingleCommand.size(); i++) {
-        cout << "Iterated through SingleCommand" << endl;
-        cout << this->SingleCommand.at(i) << endl;
+        //cout << "Iterated through SingleCommand" << endl;
+        // cout << this->SingleCommand.at(i) << endl;
     }
 }
 bool Command::execute() {
@@ -51,6 +51,11 @@ bool Command::execute() {
     //     cout << "Iterated through SingleCommand" << endl;
     //     cout << this->SingleCommand.at(i) << endl;
     // }
+    for (int j = 0; j < SingleCommand.size(); j++) {
+        if (SingleCommand.at(j) == "exit") {
+            exit(0);
+        }
+    }
     if (SingleCommand.at(0) == "exit") {
         //cout << "Exiting execution" << endl;
         exit(0);

@@ -11,13 +11,13 @@
 using namespace std;
 
 int main () {
-    
-    Input* input = new Input();
-    input->getInput();
-    Execute* execute = new Execute();
-    execute->populateExecute(0, 0, input);
-    execute->populateExecuteConnectors(input);
-    execute->execute();
-    
+        
+        Input* input = new Input();
+        input->getInput();
+        Execute* execute = new Execute();
+        execute->populateExecute(0, 0, input);
+        execute->populateExecuteConnectors(input);
+        execute->execute();
+        
     return 0;
 }
