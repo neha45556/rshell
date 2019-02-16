@@ -23,17 +23,15 @@ class Input {
         vector<string> Connectors;
         void populateVector();
         void populateConnectors(char []);
-        //void populateExecute(int , int , Execute* );
     public:
         Input() { };
-        // Command(vector<string > SingleCommand);
         void getInput();
-        // void execute();
         string at(int );
         string ConAt(int );
         int size();
         int ConSize();
         void ConErase(int, int);
+        
 };
 
 #endif
