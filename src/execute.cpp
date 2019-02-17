@@ -484,7 +484,7 @@ void Execute::populateExecuteConnectors(Input* ConnectorVector) {
     // }
     //cout << "----------------" << endl;
     if (ConnectorVector->ConSize() > 2) {
-        for (int b = 0; b < ConnectorVector->ConSize(); b++) {
+        for (int b = 1; b < ConnectorVector->ConSize() - 1; b++) {
             if (ConnectorVector->ConAt(b) == "&&") {
                 if ((ConnectorVector->ConAt(b-1)) == "\"" && ConnectorVector->ConAt(b+1) == "\"") {
                     ConnectorVector->ConErase(b-1, b+1);
