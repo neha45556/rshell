@@ -12,8 +12,12 @@ using namespace std;
 
 int main () {
         
-        Input* input = new Input();
-        input->getInput();
+        char input1 [] = "butt";
+        // char input2[] = "echo hello; echo hello2";
+        Input* input = new Input(input1);
+        //input->parse();
+        //input->getInput();
+        // input->parse();
         Execute* execute = new Execute();
         execute->populateExecute(0, 0, input);
         execute->populateExecuteConnectors(input);

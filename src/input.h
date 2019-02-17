@@ -25,6 +25,7 @@ class Input {
         void populateConnectors(char []);
     public:
         Input() { };
+        Input(char []);
         void getInput();
         string at(int );
         string ConAt(int );

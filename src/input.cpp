@@ -2,6 +2,15 @@
 
 using namespace std;
 
+Input::Input(char array[]) {
+    char copy[100];
+    for(int i = 0; i < 100; i++) {
+        this->input[i] = array[i];
+        copy[i] = array[i];
+    }   
+    populateVector();
+    populateConnectors(copy);
+}
 void Input::getInput() {
     cout << "$ ";
     cin.getline(this->input, 100);
