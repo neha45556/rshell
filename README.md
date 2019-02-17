@@ -13,7 +13,7 @@ This program will print out a command prompt from which it will read in a line o
 
 # Parsing
 
-
+![parse](https://github.com/cs100/assignment-marc-jimenez-neha-gupta/blob/master/images/parse.jpeg)
 
 # Classes
 
