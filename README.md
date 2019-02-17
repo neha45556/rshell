@@ -29,11 +29,11 @@ The class **_command_** will hold an encapsulated vector of type string named si
 
 The class **_connector_** holds a protected base pointer named _first_ and _next_ . The base pointer first will point to the first command located directly to the left of the connector in the command line. The base pointer next will point to the command after the connector unless no command exists there. 
 
-The class **_and_** is derived from the class Connector which is derived from Base. So the and class functions replicate the ones that exist in the Base class. If the connector is a "&&" then the next command is executed only if first exceeds. The and class returns true or false based on the cl
+The class **_and_** is derived from the class Connector which is derived from Base. So the and class functions replicate the ones that exist in the Base class. If the connector is a "&&" then the next command is executed only if first exceeds. 
 
 The class **_or_** is another class derived from Connector. If its a "||" then the next command is executed only if the first one fails.
 
-The class **_semicolon_** derived from Connector it always executes the next command. 
+The class **_semicolon_** derived from Connector always executes the next command. 
 
 # Prototype/Research
 
