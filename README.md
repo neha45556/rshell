@@ -11,13 +11,17 @@ This program will print out a command prompt from which it will read in a line o
 
 ![sample UML Diagram](https://github.com/cs100/assignment-marc-jimenez-neha-gupta/blob/master/images/Assignment2Uml.jpeg)
 
+# Parsing
+
+
+
 # Classes
 
 Our class group is **_execute_** , **_connector_** and **_command_** which all inherit from the single base class of **_base_**. On top of that we have three classes that derive from the **_connector_** class called **_and_**, **_semicolon_**, and **_or_**. 
 
-Our 
-
 The base class **_base_** will carry functions to help us idenity whether the client has included comments which are preceded by hastags, which indicate comments must be ignored. The base class encapsulates a bool function called flag which is used in other classes to indicate how and when to implement the connectors. 
+
+The **_input_** class will have private a char* array, two type string vectors
  
 The **_execute_** will have two private vectors type Base* called commandLine and connectors. In addtion, to the functions held by the Base class the execute class also implements populateExecute and populateExecuteConnectors type void functions. 
 
@@ -76,6 +80,8 @@ We found that waitpid() allows our parent process to stop allowing it to wait fo
 execvp()
 
 We found that execvp() will be how we execute commands in our shell. It takes in two arguments first being the file we wish to execute and then an array of null-terminated strings that represent the appropriate arguments to the file. 
+
+
 
 # Development and Testing Roadmap
 
