@@ -33,7 +33,7 @@ The class **_and_** is derived from the class Connector which is derived from Ba
 
 The class **_or_** is another class derived from Connector. If its a "||" then the next command is executed only if the first one fails.
 
-The class **_semicolon_** derived from Connector always executes the next command. 
+The class **_semicolon_** derived from Connector always executes the next command in the input. 
 
 # Prototype/Research
 
