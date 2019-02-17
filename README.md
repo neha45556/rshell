@@ -5,7 +5,7 @@
 
 # Introduction
 
-This program will print out a command prompt from which it will read in a line of commands and connectors from standard input. It will do this through a composite pattern from which the classes known as **_execute_**, **_connector_** and **_command_** are derived from a shared base interface class known as **_base_** . It will then execute the approriate commands using **_fork_**, **_execvp_**, and **_waitpid_** . First our client will create an input through the use of the derived classes by creating specific objects through the use of the class's constructors. Those will then be read and executed upon and processed through our **_fork_**, **_execvp_**, and **_waitpid_** commands. Based on the inputs we recieve our command line will check for connectors, commands, and comments before outputting the data. Additionally, we built a parser using the strok function from the C standard library to parse through our client’s input. The tokens from the input array helps us idenitfy the connectors and commands and populate our two vectors of type string. 
+This program will print out a command prompt from which it will read in a line of commands and connectors from standard input. It will do this through a composite pattern from which the classes known as **_execute_**, **_connector_** and **_command_** are derived from a shared base interface class known as **_base_**. We have an additional class called **_input_** which stores the client's input and parses through the char* array. It will then execute the approriate commands using **_fork_**, **_execvp_**, and **_waitpid_** . First our client will create an input through the use of the derived classes by creating specific objects through the use of the class's constructors. Those will then be read and executed upon and processed through our **_fork_**, **_execvp_**, and **_waitpid_** commands. Based on the inputs we recieve our command line will check for connectors, commands, and comments before outputting the data. Additionally, we built a parser using the strok function from the C standard library to parse through our client’s input. The tokens from the input array helps us idenitfy the connectors and commands and populate our two vectors of type string. 
 
 # Diagram
 
@@ -14,6 +14,8 @@ This program will print out a command prompt from which it will read in a line o
 # Classes
 
 Our class group is **_execute_** , **_connector_** and **_command_** which all inherit from the single base class of **_base_**. On top of that we have three classes that derive from the **_connector_** class called **_and_**, **_semicolon_**, and **_or_**. 
+
+Our 
 
 The base class **_base_** will carry functions to help us idenity whether the client has included comments which are preceded by hastags, which indicate comments must be ignored. The base class encapsulates a bool function called flag which is used in other classes to indicate how and when to implement the connectors. 
  
