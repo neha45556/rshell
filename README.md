@@ -23,7 +23,7 @@ The base class **_base_** will carry functions to help us idenity whether the cl
 
 The **_input_** class will have private a char* array, two type string vectors called vectorInput and Connectors. Along with two functions called populateVector and populateConnectors. In this class through parsing we split our input array into two seperate vectors one for commands and input and the other for connectors. 
  
-The **_execute_** will have two private vectors type Base* called commandLine and connectors. In addtion, to the functions held by the Base class the execute class also implements populateExecute and populateExecuteConnectors type void functions. 
+The **_execute_** will have two private vectors type Base* called commandLine and connectors. In addtion, to the functions held by the Base class, the execute class also implements populateExecute and populateExecuteConnectors type void functions. 
 
 The class **_command_** will hold an encapsulated vector of type string named singleCommand which is iterating through the client's input and searching for hashtags. The command class is responsible for testing whether the user's commands are exectuable. The commands are exectued based on the syscalls waitpid, fork, and execvp. After each syscall perror is called in any case of an error. The final part is the exit call which exits our program if called upon.
 
