@@ -13,7 +13,7 @@ This program will print out a command prompt from which it will read in a line o
 
 # Parsing
 
-![parse](https://github.com/cs100/assignment-marc-jimenez-neha-gupta/blob/master/images/parse.jpeg)
+![Parse](https://github.com/cs100/assignment-marc-jimenez-neha-gupta/blob/master/images/parse.jpeg)
 
 # Classes
 
@@ -21,7 +21,7 @@ Our class group is **_execute_** , **_connector_** and **_command_** which all i
 
 The base class **_base_** will carry functions to help us idenity whether the client has included comments which are preceded by hastags, which indicate comments must be ignored. The base class encapsulates a bool function called flag which is used in other classes to indicate how and when to implement the connectors. 
 
-The **_input_** class will have private a char* array, two type string vectors
+The **_input_** class will have private a char* array, two type string vectors called vectorInput and Connectors. Along with two functions called populateVector and populateConnectors. In this class through parsing we split our input array into two seperate vectors one for commands and input and the other for connectors. 
  
 The **_execute_** will have two private vectors type Base* called commandLine and connectors. In addtion, to the functions held by the Base class the execute class also implements populateExecute and populateExecuteConnectors type void functions. 
 
