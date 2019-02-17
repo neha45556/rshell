@@ -5,7 +5,7 @@
 
 # Introduction
 
-This program will print out a command prompt from which it will read in a line of commands and connectors from standard input. It will do this through a composite pattern from which the classes known as **_execute_**, **_connector_** and **_command_** are derived from a shared base interface class known as **_base_**. We have an additional class called **_input_** which stores the client's input and parses through the char* array. It will then execute the approriate commands using **_fork_**, **_execvp_**, and **_waitpid_** . First our client will create an input through the use of the derived classes by creating specific objects through the use of the class's constructors. Those will then be read and executed upon and processed through our **_fork_**, **_execvp_**, and **_waitpid_** commands. Based on the inputs we recieve our command line will check for connectors, commands, and comments before outputting the data. Additionally, we built a parser using the strok function from the C standard library to parse through our client’s input. The tokens from the input array helps us idenitfy the connectors and commands and populate our two vectors of type string. 
+This program will print out a command prompt from which it will read in a line of commands and connectors from standard input. It will do this through a composite pattern from which the classes known as **_execute_**, **_connector_** and **_command_** are derived from a shared base interface class known as **_base_**. There are three classes which derive from **_connector_** called **_and_** , **_or_** , and **_semicolon_**. We have an additional class called **_input_** which stores the client's input and parses through the char* array. It will then execute the approriate commands using **_fork_**, **_execvp_**, and **_waitpid_** . First our client will create an input through the use of the derived classes by creating specific objects through the use of the class's constructors. Those will then be read and executed upon and processed through our **_fork_**, **_execvp_**, and **_waitpid_** commands. Based on the inputs we recieve our command line will check for connectors, commands, and comments before outputting the data. Additionally, we built a parser using the strok function from the C standard library to parse through our client’s input. The tokens from the input array helps us idenitfy the connectors and commands and populate our two vectors of type string. 
 
 # Diagram
 
@@ -27,7 +27,15 @@ The **_execute_** will have two private vectors type Base* called commandLine an
 
 The class **_command_** will hold an encapsulated vector of type string named singleCommand which is iterating through the client's input and searching for hashtags. The command class is responsible for testing whether the user's commands are exectuable. The commands are exectued based on the syscalls waitpid, fork, and execvp. After each syscall perror is called in any case of an error. The final part is the exit call which exits our program if called upon.
 
-The class **_connector_** will point to the first **_commmand_** object located after the **_connector_** in the command line. It also will hold an extra encapsulated base pointer named _first_ that will point to the first **_command_** in the command line. Then it will run its **evaluate** function in its constructors which will, depending on its encapsulated string, will do different processes. If its a "&&" then the next command is exeuted only if the first command succeeds, if its a "||" then the next command is executed only if the first one fails, and if its a ";" then the next command is always executed. 
+The class **_connector_** holds a protected base pointer named _first_ and _next_ . The base pointer first will point to the first command located directly to the left of the connector in the command line. The base pointer next will point to the command after the connector unless no command exists there. 
+
+The class **_and_** 
+
+The class **_or_**
+
+The class **_semicolon_**
+
+ If its a "&&" then the next command is exeuted only if the first command succeeds, if its a "||" then the next command is executed only if the first one fails, and if its a ";" then the next command is always executed. 
 
 # Prototype/Research
 
