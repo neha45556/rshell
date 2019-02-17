@@ -19,7 +19,7 @@ This program will print out a command prompt from which it will read in a line o
 
 Our class group is **_execute_** , **_connector_** and **_command_** which all inherit from the single base class of **_base_**. On top of that we have three classes that derive from the **_connector_** class called **_and_**, **_semicolon_**, and **_or_**. 
 
-The base class **_base_** will carry functions to help us idenity whether the client has included comments which are preceded by hastags, which indicate comments must be ignored. The base class encapsulates a bool function called flag which is used in other classes to indicate how and when to implement the connectors. 
+The base class **_base_** will carry functions to help us identify whether the client has included comments which are preceded by hastags, which indicate comments must be ignored. The base class encapsulates a bool function called flag which is used in other classes to indicate how and when to implement the connectors. 
 
 The **_input_** class will have private a char* array, two type string vectors called vectorInput and Connectors. Along with two functions called populateVector and populateConnectors. In this class through parsing we split our input array into two seperate vectors one for commands and input and the other for connectors. 
  
@@ -29,9 +29,9 @@ The class **_command_** will hold an encapsulated vector of type string named si
 
 The class **_connector_** holds a protected base pointer named _first_ and _next_ . The base pointer first will point to the first command located directly to the left of the connector in the command line. The base pointer next will point to the command after the connector unless no command exists there. 
 
-The class **_and_** is derived from the class Connector which is derived from Base. So the and class functions replicate the ones that exist in the Base class. If the connector is a "&&" then the next command is executed only if first exceeds. 
+The class **_and_** is derived from the class Connector which is derived from Base. So the and class functions replicate the ones that exist in the Base class. The flags return true or false to indicate whether the command can be executed. If the connector is a "&&" then the next command is executed only if first exceeds. 
 
-The class **_or_** is another class derived from Connector. If its a "||" then the next command is executed only if the first one fails.
+The class **_or_** is another class derived from Connector. The execute function in the or class returns a true or false to indicate whether the command should execute. If its a "||" then the next command is executed only if the first one fails.
 
 The class **_semicolon_** derived from Connector always executes the next command in the input. 
 
