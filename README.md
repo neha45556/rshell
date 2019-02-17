@@ -5,7 +5,7 @@
 
 # Introduction
 
-This program will print out a command prompt from which it will read in a line of commands and connectors from standard input. It will do this through a composite pattern from which the classes known as **_argumentList_**, **_connector_** and **_command_** are derived from a shared base interface class known as **_cmdline_** . It will then execute the approriate commands using **_fork_**, **_execvp_**, and **_waitpid_** . First our client will create an input through the use of the derived classes by creating specific objects through the use of the class's constructors. Those will then be read and executed upon and processed through our **_fork_**, **_execvp_**, and **_waitpid_** commands.
+This program will print out a command prompt from which it will read in a line of commands and connectors from standard input. It will do this through a composite pattern from which the classes known as **_execute_**, **_connector_** and **_command_** are derived from a shared base interface class known as **_base_** . It will then execute the approriate commands using **_fork_**, **_execvp_**, and **_waitpid_** . First our client will create an input through the use of the derived classes by creating specific objects through the use of the class's constructors. Those will then be read and executed upon and processed through our **_fork_**, **_execvp_**, and **_waitpid_** commands. Based on the inputs we recieve our command line will check for connectors, commands, and comments before outputting the data. Additionally, we built a parser using the strok function from the C standard library to parse through our client’s input. The tokens helps us idenitfy the connectors and commands and populate our two vectors of type string.
 
 # Diagram
 
@@ -13,11 +13,11 @@ This program will print out a command prompt from which it will read in a line o
 
 # Classes
 
-Our class group is **_argumentList_** , **_connector_** and **_command_** which all inherit from the single base class of **_cmdline_**. On top of that we have three classes that derive from the **_connector_** class called **_&&_**, **_semicolon_**, and **_or_**. 
+Our class group is **_execute_** , **_connector_** and **_command_** which all inherit from the single base class of **_base_**. On top of that we have three classes that derive from the **_connector_** class called **_and_**, **_semicolon_**, and **_or_**. 
 
-The base class **_cmdline_** will carry only the execute function that will run our code.
+The base class **_base_** will carry only the execute function that will run our code.
  
-The **_argumentList_** will have two private variables called _input_ of type string and an array called _argv_ of type char*. It will have a constructor that passes in a string and a convert function that will convert the string _input_ into the array _argv_. 
+The **_execute_** will have two private variables called _input_ of type string and an array called _argv_ of type char*. It will have a constructor that passes in a string and a convert function that will convert the string _input_ into the array _argv_. 
 
 The class **_command_** will hold an extra encapsulated base pointer named _cmd_ which will help us determine if a connector had been written in the command line before it. In its constructors it will first check if the _prev_ pointer exists and if so, then it will then run the **evaluate** function located in the **_connector_** constructor.
 
@@ -77,8 +77,8 @@ We found that execvp() will be how we execute commands in our shell. It takes in
 
 # Development and Testing Roadmap
 
-1. Create base class **_cmdline_** : Marc Jimenez
-2. Create derived class **_argumentList_** : Neha Gupta
+1. Create base class **_base_** : Marc Jimenez
+2. Create derived class **_execute_** : Neha Gupta
 3. Create derived class **_connector_** : Neha Gupta
 4. Create derived class **_command_** : Marc Jimenez
 5. Write unit test single_command_tests.sh : Marc Jimenez
