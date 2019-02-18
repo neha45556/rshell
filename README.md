@@ -105,13 +105,13 @@ We found that execvp() will be how we execute commands in our shell. It takes in
 
 # Development and Testing Roadmap
 
-1. Create base class **_base_** : Marc Jimenez
-2. Create derived class **_execute_** : Neha Gupta
-3. Create derived class **_connector_** : Neha Gupta
+1. Create base class **_base_** : Neha Gupta
+2. Create derived class **_execute_** : Marc Jimenez
+3. Create derived class **_connector_** : Marc Jimenez
 4. Create derived class **_command_** : Marc Jimenez
 5. Write unit test single_command_tests.sh : Marc Jimenez
-6. Write unit test multiple_command_tests.sh : Neha Gupta
-7. Write unit test commented_command_tests.sh : Marc Jimenez
+6. Write unit test multiple_command_tests.sh : Marc Jimenez 
+7. Write unit test commented_command_tests.sh : Neha Gupta
 8. Write unit test exit_command_tests.sh : Neha Gupta
 
 
