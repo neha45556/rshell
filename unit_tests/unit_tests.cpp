@@ -35,7 +35,7 @@ TEST(SingleCommand, CommandLS) {
     testing::internal::CaptureStdout();
     execute->execute();
     string output = testing::internal::GetCapturedStdout();
-    string expectedOutput = ".\n..\na.out\nbin\nCMakeCache.txt\nCMakeFiles\ncmake_install.cmake\nCMakeLists.txt\n.git\n.gitignore\n.gitmodules\ngoogletest\nimages\nintegration_tests\nlib\nMakefile\nREADME.md\nrshell\nsrc\ntest\nunit_tests\n";
+    string expectedOutput = ".\n..\na.out\nbin\nCMakeCache.txt\nCMakeFiles\ncmake_install.cmake\nCMakeLists.txt\n.git\n.gitignore\n.gitmodules\ngoogletest\nimages\nintegration_tests\nlib\nMakefile\nnames.txt\nREADME.md\nrshell\nsrc\ntest\nunit_tests\n";
     EXPECT_EQ(expectedOutput, output);
 }
 
@@ -56,7 +56,7 @@ TEST(SingleCommand, MKDirAndRM) {
     testing::internal::CaptureStdout();
     executeCheck->execute();
     string output = testing::internal::GetCapturedStdout();
-    string expectedOutput = ".\n..\na.out\nbin\nCMakeCache.txt\nCMakeFiles\ncmake_install.cmake\nCMakeLists.txt\n.git\n.gitignore\n.gitmodules\ngoogletest\nhello\nimages\nintegration_tests\nlib\nMakefile\nREADME.md\nrshell\nsrc\ntest\nunit_tests\n";
+    string expectedOutput = ".\n..\na.out\nbin\nCMakeCache.txt\nCMakeFiles\ncmake_install.cmake\nCMakeLists.txt\n.git\n.gitignore\n.gitmodules\ngoogletest\nhello\nimages\nintegration_tests\nlib\nMakefile\nnames.txt\nREADME.md\nrshell\nsrc\ntest\nunit_tests\n";
     EXPECT_EQ(expectedOutput, output);
     
     char input3Array [] = "rm -rf hello";
@@ -69,7 +69,7 @@ TEST(SingleCommand, MKDirAndRM) {
     testing::internal::CaptureStdout();
     executeCheck->execute();
     string output2 = testing::internal::GetCapturedStdout();
-    string expectedOutput2 = ".\n..\na.out\nbin\nCMakeCache.txt\nCMakeFiles\ncmake_install.cmake\nCMakeLists.txt\n.git\n.gitignore\n.gitmodules\ngoogletest\nimages\nintegration_tests\nlib\nMakefile\nREADME.md\nrshell\nsrc\ntest\nunit_tests\n";
+    string expectedOutput2 = ".\n..\na.out\nbin\nCMakeCache.txt\nCMakeFiles\ncmake_install.cmake\nCMakeLists.txt\n.git\n.gitignore\n.gitmodules\ngoogletest\nimages\nintegration_tests\nlib\nMakefile\nnames.txt\nREADME.md\nrshell\nsrc\ntest\nunit_tests\n";
     EXPECT_EQ(expectedOutput2, output2); 
 }
 
@@ -95,7 +95,7 @@ TEST(MultipleCommand, ManyCommands) {
     testing::internal::CaptureStdout();
     execute->execute();
     string output = testing::internal::GetCapturedStdout();
-    string expectedOutput = "a.out\nbin\nCMakeCache.txt\nCMakeFiles\ncmake_install.cmake\nCMakeLists.txt\ngoogletest\nimages\nintegration_tests\nlib\nMakefile\nREADME.md\nrshell\nsrc\ntest\nunit_tests\nhello\n1\n3\n";
+    string expectedOutput = "a.out\nbin\nCMakeCache.txt\nCMakeFiles\ncmake_install.cmake\nCMakeLists.txt\ngoogletest\nimages\nintegration_tests\nlib\nMakefile\nnames.txt\nREADME.md\nrshell\nsrc\ntest\nunit_tests\nhello\n1\n3\n";
     EXPECT_EQ(expectedOutput, output);
 }
 
