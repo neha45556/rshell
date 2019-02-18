@@ -4,9 +4,22 @@
 > Authors: Marc Jimenez (862049962) , Neha Gupta (862049507)
 
 # Introduction
-In this program our goal is to develop a command shell called rshell. This program will print out a command prompt from which it will read in a line of commands and connectors from standard input. It will execute the approriate commands using fork, waitpid, and execvp. The argument list must be able to understand the difference between a connector and, or the regular and. It should be able to ignore hastags, and the proceeding comments which exist in the argument list. 
+In this program our goal is to develop a command shell called rshell. This program will be able to take in an input from our user from standard output and execute the appropriate commands.
 
-The program will implement this through a composite pattern from which the classes known as **_execute_**, **_connector_** and **_command_** are derived from a shared base interface class known as **_base_**. There are three classes which derive from **_connector_** called **_and_** , **_or_** , and **_semicolon_**. We have an additional class called **_input_** which stores the client's input and parses through the char* array. It will then execute the approriate commands using **_fork_**, **_execvp_**, and **_waitpid_** . First our client will create an input through the use of the derived classes by creating specific objects through the use of the class's constructors. Those will then be read and executed upon and processed through our **_fork_**, **_execvp_**, and **_waitpid_** commands. Based on the inputs we recieve our command line will check for connectors, commands, and comments before outputting the data. Additionally, we built a parser using the strok function from the C standard library to parse through our client’s input. The tokens from the input array helps us idenitfy the connectors and commands and populate our two vectors of type string. 
+# Specifications
+
+  1. Print a commad prompt (e.g. '$')
+  2. Read in a line of commands(s) (and connectors(s)) from standard input
+  3. Execute the appropriate commands through the use of __fork__, __execvp__, and __waitpid__
+  4. Ability to interact with both quotes(" ") and the hashtag symbol(#) to alter the output of certain commands.
+
+## Connectors
+
+Connectors will be implemented in our pattern through the use of three different classes known as **_and_**, **_or_**, and **_semicolon_** which all derive from the same class known as **_connector_**. 
+
+## Method
+
+The program will implement this through a composite pattern from which the classes known as **_execute_**, **_connector_** and **_command_** are derived from a shared base interface class known as **_base_**. There are three classes which derive from **_connector_** called **_and_** , **_or_** , and **_semicolon_**. We have an additional class called **_input_** which stores the client's input and parses through the char* array. Our client will first create a new **_input_** object and call the function known as _getInput()_. They will be then prompted to input a command that we will then tokenize using _strtok()_ into two seperate vectors encapsulated in the **_input_** class that holds the commmands and one that holds the connectors. From there they will create a new **_execute_** object that they will immediately call two functions on it, known as _populateExecute()_ and _populateExecuteConnectors_. This will take in the vectors from the object **_input_** and create two new vectors of type **_base_** pointer that holds **_commands_** and **_connecctors_**. From there the client will finally call execute on their **_execute_** object and in turn execute the correct output using both vectors.
 
 # Diagram
 
