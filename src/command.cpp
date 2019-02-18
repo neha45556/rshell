@@ -51,21 +51,16 @@ bool Command::execute() {
     //     cout << "Iterated through SingleCommand" << endl;
     //     cout << this->SingleCommand.at(i) << endl;
     // }
-    for (int j = 0; j < SingleCommand.size(); j++) {
-        if (SingleCommand.at(j) == "exit") {
-            exit(0);
-        }
-    }
     if (SingleCommand.at(0) == "exit") {
         //cout << "Exiting execution" << endl;
         exit(0);
     }
     char *cmd = &this->SingleCommand.at(0)[0];
-    char *argv[1000];
+    char *argv[this->SingleCommand.size()+1];
     for (unsigned i = 0; i < this->SingleCommand.size(); i++) {
         argv[i] = &this->SingleCommand.at(i)[0];
     }
-    argv[this->SingleCommand.size()] == NULL;
+    argv[this->SingleCommand.size()] = NULL;
     pid_t childpid = fork();
     if (childpid < 0) {
         perror("fork() failed");

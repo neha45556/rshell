@@ -1,9 +1,9 @@
-#include "input.cpp"
-#include "command.cpp"
-#include "execute.cpp"
-#include "semicolon.cpp"
-#include "and.cpp"
-#include "or.cpp"
+#include "input.h"
+#include "command.h"
+#include "execute.h"
+#include "semicolon.h"
+#include "and.h"
+#include "or.h"
 #include <iostream>
 #include <string>
 #include <cstring>
@@ -11,17 +11,18 @@
 using namespace std;
 
 int main () {
-        
-        char input1 [] = "butt";
-        // char input2[] = "echo hello; echo hello2";
-        Input* input = new Input(input1);
-        //input->parse();
-        //input->getInput();
-        // input->parse();
-        Execute* execute = new Execute();
+        bool userExit = false;
+	while (!userExit) {
+        Input* input = new Input();
+        input->getInput();
+	if (input->at(0) == "exit") {
+		userExit = true;
+		exit(0);
+	} 
+	Execute* execute = new Execute();
         execute->populateExecute(0, 0, input);
         execute->populateExecuteConnectors(input);
         execute->execute();
-        
+        }
     return 0;
 }

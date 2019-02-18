@@ -24,6 +24,7 @@ bool Or::execute() {
             }
         }
         else {
+	    next->setFlagTrue();
             //cout << "LHS returns true" << endl;
             return false;
         }

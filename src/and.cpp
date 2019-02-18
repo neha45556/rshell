@@ -19,6 +19,7 @@ bool And::execute() {
     else {
         //cout << "LHS has not been called" << endl;
         if (!first->execute()) {
+	    next->setFlagTrue();
             //cout << "LHS returns false" << endl;
             return false;
         }
