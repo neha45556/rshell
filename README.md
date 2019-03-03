@@ -19,11 +19,11 @@ Connectors will be implemented in our pattern through the use of three different
 
 ## Method
 
-The program will implement this through a composite pattern from which the classes known as **_execute_**, **_connector_** and **_command_** are derived from a shared base interface class known as **_base_**. There are three classes which derive from **_connector_** called **_and_** , **_or_** , and **_semicolon_**. We have an additional class called **_input_** which stores the client's input and parses through the char* array. Our client will first create a new **_input_** object and call the function known as _getInput()_. They will be then prompted to input a command that we will then tokenize using _strtok()_ into two seperate vectors encapsulated in the **_input_** class that holds the commmands and one that holds the connectors. From there they will create a new **_execute_** object that they will immediately call two functions on it, known as _populateExecute()_ and _populateExecuteConnectors_. This will take in the vectors from the object **_input_** and create two new vectors of type **_base_** pointer that holds **_commands_** and **_connecctors_**. From there the client will finally call execute on their **_execute_** object and in turn execute the correct output using both vectors.
+The program will implement this through a composite pattern from which the classes known as **_FullCommand_**, **_connector_** and **_command_** are derived from a shared base interface class known as **_base_**. There are three classes which derive from **_connector_** called **_and_** , **_or_** , and **_semicolon_**. We have an additional class called **_input_** which stores the client's input and parses through the char* array. Our client will first create a new **_input_** object and call the function known as _getInput()_. They will be then prompted to input a command that we will then tokenize using _strtok()_ into two seperate vectors encapsulated in the **_input_** class that holds the commmands and one that holds the connectors. From there they will create a new **_FullCommand_** object that they will immediately call two functions on it, known as _populateExecute()_ and _populateExecuteConnectors_. This will take in the vectors from the object **_input_** and create two new vectors of type **_base_** pointer that holds **_commands_** and **_connectors_**. From there the client will finally call execute on their **_FullCommand_** object and in turn execute the correct output using both vectors. 
 
 # Diagram
 
-![sample UML Diagram](https://github.com/cs100/assignment-marc-jimenez-neha-gupta/blob/master/images/Assignment2Uml.jpeg)
+![sample UML Diagram](https://github.com/cs100/assignment-marc-jimenez-neha-gupta/blob/master/images/Assignment3Uml.jpeg)
 
 # Parsing
 
@@ -31,13 +31,13 @@ The program will implement this through a composite pattern from which the class
 
 # Classes
 
-Our class group is **_execute_** , **_connector_** and **_command_** which all inherit from the single base class of **_base_**. On top of that we have three classes that derive from the **_connector_** class called **_and_**, **_semicolon_**, and **_or_**. 
+Our class group is **_FullCommand_** , **_connector_** and **_command_** which all inherit from the single base class of **_base_**. On top of that we have three classes that derive from the **_connector_** class called **_and_**, **_semicolon_**, and **_or_**. 
 
 The base class **_base_** will carry functions to help us identify whether the client has included comments which are preceded by hastags, which indicate comments must be ignored. The base class encapsulates a bool function called flag which is used in other classes to indicate how and when to implement the connectors. 
 
 The **_input_** class will have private a char* array, two string type vectors called vectorInput and Connectors. Along with two functions called populateVector and populateConnectors. In this class through parsing we split our input array into two seperate vectors one for commands and input, and the other for connectors. 
  
-The **_execute_** will have two private vectors type Base* called commandLine and connectors. In addition, to the functions held by the Base class, the execute class also implements functions populateExecute and populateExecuteConnectors of type void. 
+The **_FullCommand_** will have two private vectors type Base* called commandLine and connectors. In addition, to the functions held by the Base class, the execute class also implements functions populateExecute and populateExecuteConnectors of type void. 
 
 The class **_command_** will hold an encapsulated vector of type string named singleCommand which is iterating through the client's input and searching for hashtags. The command class is responsible for testing whether the user's commands are exectuable. The commands are exectued based on the syscalls waitpid, fork, and execvp. After each syscall perror is called in any case of an error in execution. The final part is the exit call which exits our program if called upon by the client.
 
@@ -48,6 +48,29 @@ The class **_and_** is derived from the class Connector which is derived from Ba
 The class **_or_** is another class derived from Connector. The execute function in the or class returns a true or false to indicate whether the command should execute. If its a "||" then the next command is executed only if the first one fails.
 
 The class **_semicolon_** derived from Connector always executes the next command in the input. 
+
+The class **_test_** derived from Base checks whether the file or directory exists based on the flag and returns a true or false.
+
+The class **_Paren_** derived from Base changes the precedence of the execution of commands,connectors, and grouped commands.
+
+# Test Command
+
+In the test command it should be able to work with the command test and the brackets,[]. The flags -e, -f, -d check if there exists a directory, file, or both. If there exists no flag then it defaults to -e. The command should return true or false based on the output. We used the stat() function, S_ISDIR and S_ISREG to work with full directory paths and relative directory paths. The Test command should combine with other connectors and functionailty successfully. 
+
+$ test -e src/input.cpp ==  $ test src/input.cpp -> returns (TRUE)
+
+$ test -f stuff.cpp == $ [ -f stuff.cpp ] -> returns (FALSE)
+
+# Precedence Operators
+
+The precedence operators are parentheses ( ) which are used to change the precedence of the execution of commands. There can also be nested parentheses along with multiple sets. The rshell should also be able to recognize uneven parentheses and print an error message. 
+
+$ (echo 2 && echo 3) || echo 5 
+
+$ ((echo 4 || echo 2) && echo 6) 
+
+$ ((((echo hello ))) - uneven set of parentheses
+
 
 # Prototype/Research
 
@@ -106,13 +129,17 @@ We found that execvp() will be how we execute commands in our shell. It takes in
 # Development and Testing Roadmap
 
 1. Create base class **_base_** : Neha Gupta
-2. Create derived class **_execute_** : Marc Jimenez
+2. Create derived class **_FullCommand_** : Marc Jimenez
 3. Create derived class **_connector_** : Marc Jimenez
 4. Create derived class **_command_** : Marc Jimenez
 5. Write unit test single_command_tests.sh : Marc Jimenez
 6. Write unit test multiple_command_tests.sh : Marc Jimenez 
 7. Write unit test commented_command_tests.sh : Neha Gupta
 8. Write unit test exit_command_tests.sh : Neha Gupta
+9. Write unit test test_command_tests.sh : Marc Jimenez
+10. Write unit test_symbolic_tests.sh : Neha Gupta
+11. Write precedence_tests.sh : Marc Jimenez
+
 
 
 
