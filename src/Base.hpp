@@ -13,9 +13,11 @@ class Base {
     public:
     
         Base() { };
-        virtual void deleteHashtag() = 0;
-        virtual bool findHashtag() = 0;
-        virtual void printCommand() = 0;
+        //virtual void deleteHashtag() = 0;
+        //virtual bool findHashtag() = 0;
+        //virtual void printCommand() = 0;
+        // virtual void addCommand(Base* ) = 0;
+        // virtual void addConnector(Base* ) = 0;
         virtual bool execute() = 0;
         virtual bool checkFlag() = 0;
         virtual void setFlagTrue() = 0;

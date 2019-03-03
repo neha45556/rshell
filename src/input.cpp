@@ -3,28 +3,12 @@
 using namespace std;
 
 Input::Input(char array[]) {
-    char copy[100];
-    for(int i = 0; i < 100; i++) {
-        this->input[i] = array[i];
-        copy[i] = array[i];
-    }   
     populateVector();
-    populateConnectors(copy);
 }
 void Input::getInput() {
     cout << "$ ";
     cin.getline(this->input, 100);
-        char copy[100];
-        for(int i = 0; i < 100; i++) {
-            copy[i] = input[i];
-        }
-        populateVector();
-        populateConnectors(copy);
-    // Execute* execute = new Execute();
-    // int startOfCommand = 0;
-    // int EndOfCommand = 0;
-    // populateExecute(startOfCommand, EndOfCommand, execute);
-    // cout << "Populated Execute Object, executing command(s)" << endl;
+    populateVector();
 }
 void Input::populateVector() {
     char* point;
@@ -33,19 +17,34 @@ void Input::populateVector() {
         VectorInput.push_back(point);
         point = strtok(nullptr, " ");
     }
-    // for(int i = 0; i < this->VectorInput.size(); i++) {
-    //     cout << VectorInput.at(i) << endl;
-    // }
-}
-void Input::populateConnectors(char copy[]) {
-    char* point;
-    point = strtok(copy, " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-1234567890!@$%^*()@_=+[]{}:',<.>/?`~");
-    while (point != nullptr) {
-        Connectors.push_back(point);
-        point = strtok(nullptr, " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-1234567890!@$%^*()_=+[]{}:',<.>/?`~");
+    // check for hashtag
+    for(int j = 0; j < this->VectorInput.size(); j++) {
+        size_t findHashtag = VectorInput.at(j).find("#");
+        if (findHashtag != string::npos) {
+            bool quotesAroundHashtag = false;
+            for (int k = j + 1; k < VectorInput.size(); k++) {
+                size_t quotesAfterHash = VectorInput.at(k).find("\"");
+                if (quotesAfterHash != string::npos) {
+                    for (int m = k + 1; m < VectorInput.size(); m++) {
+                        size_t quotePair = VectorInput.at(m).find("\"");
+                        if (quotePair == string::npos) {
+                            quotesAroundHashtag = true;
+                            break;
+                        }
+                        else {
+                            VectorInput.erase((VectorInput.begin()+j), (VectorInput.end()));    
+                        }
+                    }
+                }
+                else {
+                    VectorInput.erase((VectorInput.begin()+j), (VectorInput.end()));
+                }
+            }
+        }
     }
-    // for(int i = 0; i < this->Connectors.size(); i++) {
-    //     cout << Connectors.at(i) << endl;
+    // testing
+    // for(int i = 0; i < this->VectorInput.size(); i++) {
+    //     //cout << VectorInput.at(i) << endl;
     // }
 }
 string Input::at(int num) {

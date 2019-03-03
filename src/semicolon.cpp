@@ -22,7 +22,7 @@ bool Semicolon::execute() {
         if(first->execute()) {
             //cout << "First command executed successfully" << endl;
             if(next->execute()) {
-                //cout << "Next command successfully executed" << endl;
+              //  cout << "Next command successfully executed" << endl;
                 return true;
             }
             else {
@@ -31,6 +31,7 @@ bool Semicolon::execute() {
             }
         }
         else {
+            //cout << "first command failed to execute" << endl;
             if(next->execute()) {
                 return true;
             }

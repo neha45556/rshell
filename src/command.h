@@ -2,8 +2,9 @@
 #define COMMAND_H
 
 #include "Base.hpp"
+#include "test.cpp"
 #include <iostream>
-#include <algorithm>
+#include <algorithm> 
 #include <cstring>
 #include <string>
 #include <vector>
@@ -20,18 +21,13 @@ using namespace std;
 class Command : public Base {
     private:
         vector<string> SingleCommand;
-        // vector<string> connectors;
         bool flag = false;
-        // void populateConnectors(char copy[]);
     public:
         Command() { };
         Command(vector<string > SingleCommand);
-        void printCommand();
-        void deleteHashtag();
-        bool findHashtag();
-        bool execute();
         bool checkFlag();
         void setFlagTrue();
+        bool execute();
         string at(int ); 
         int size();
 };
