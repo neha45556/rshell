@@ -138,6 +138,91 @@ TEST(SingleCommand, CommentWithQuotes) {
 	EXPECT_EQ(expectedOutput, output);
 }
 
+TEST(test1, bracketE){
+	char inputArray [] = "[ -e src/input.cpp ]";
+	Input* input = new Input(inputArray);
+	FullCommand* command = new FullCommand();
+	command->parse(0,0,input);
+	testing::internal::CaptureStdout();
+	command->execute();
+	string output = testing::internal::GetCapturedStdout();
+	string expectedOutput = "(TRUE)\n";
+	EXPECT_EQ(expectedOutput, output);
+}
+TEST(test2, bracketF){
+	char inputArray [] = "[ -f src/stuff.cpp ]";
+        Input* input = new Input(inputArray);
+        FullCommand* command = new FullCommand();
+        command->parse(0,0,input);
+        testing::internal::CaptureStdout();
+        command->execute();
+        string output = testing::internal::GetCapturedStdout();
+        string expectedOutput = "(FALSE)\n";
+        EXPECT_EQ(expectedOutput, output);
+}
+
+TEST(testtwo, bracketD){
+        char inputArray [] = "[ -d src ]";
+        Input* input = new Input(inputArray);
+        FullCommand* command = new FullCommand();
+        command->parse(0,0,input);
+        testing::internal::CaptureStdout();
+        command->execute();
+        string output = testing::internal::GetCapturedStdout();
+        string expectedOutput = "(TRUE)\n";
+        EXPECT_EQ(expectedOutput, output);
+}
+
+TEST(test3, wordnoFlag){
+        char inputArray [] = "test src/Paren.cpp";
+        Input* input = new Input(inputArray);
+        FullCommand* command = new FullCommand();
+        command->parse(0,0,input);
+        testing::internal::CaptureStdout();
+        command->execute();
+        string output = testing::internal::GetCapturedStdout();
+        string expectedOutput = "(TRUE)\n";
+        EXPECT_EQ(expectedOutput, output);
+}
+
+TEST(test4, wordF){
+        char inputArray [] = "test -f src/command.h";
+        Input* input = new Input(inputArray);
+        FullCommand* command = new FullCommand();
+        command->parse(0,0,input);
+        testing::internal::CaptureStdout();
+        command->execute();
+        string output = testing::internal::GetCapturedStdout();
+        string expectedOutput = "(TRUE)\n";
+        EXPECT_EQ(expectedOutput, output);
+}
+
+TEST(test5, wordE){
+        char InputArray [] = "test -e src/main.cpp";
+        Input* input = new Input(InputArray);
+        FullCommand* command = new FullCommand();
+        command->parse(0,0,input);
+        testing::internal::CaptureStdout();
+        command->execute();
+        string output = testing::internal::GetCapturedStdout();
+        string expectedOutput = "(TRUE)\n";
+        EXPECT_EQ(expectedOutput, output);
+}
+
+TEST(test6, wordD){
+	char InputArray [] = "test -d integration_tests";
+	Input* input = new Input(InputArray);
+	FullCommand* command = new FullCommand();
+	command->parse(0,0,input);
+	testing::internal::CaptureStdout();
+	command->execute();
+	string output = testing::internal::GetCapturedStdout();
+	string expectedOutput = "(TRUE)\n";
+	EXPECT_EQ(expectedOutput, output);
+}
+
+
+
 int main(int argc, char**argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
