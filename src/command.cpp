@@ -69,8 +69,8 @@ bool Command::execute() {
         argv[i] = &this->SingleCommand.at(i)[0];
     }
     if(SingleCommand.at(0) == "[" || SingleCommand.at(0) == "test"){
-        //cout << "this" << endl;
-        Test* t1 = new Test(SingleCommand); 
+       //cout << "this" << endl;
+       Test* t1 = new Test(SingleCommand); 
         t1->parse();
     }
     argv[this->SingleCommand.size()] = NULL;

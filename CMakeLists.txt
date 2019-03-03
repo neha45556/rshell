@@ -20,8 +20,8 @@ ADD_EXECUTABLE(rshell
 	${PROJECT_SOURCE_DIR}/src/and.cpp
 	${PROJECT_SOURCE_DIR}/src/or.cpp
 	${PROJECT_SOURCE_DIR}/src/Paren.cpp
-	${PROJECT_SOURCE_DIR}/src/test.cpp
 	${PROJECT_SOURCE_DIR}/src/MultCmd.cpp
+	${PROJECT_SOURCE_DIR}/src/test.cpp
 
 )
 
@@ -36,8 +36,8 @@ ADD_EXECUTABLE(test
         ${PROJECT_SOURCE_DIR}/src/and.cpp
         ${PROJECT_SOURCE_DIR}/src/or.cpp
 	${PROJECT_SOURCE_DIR}/src/Paren.cpp
-	${PROJECT_SOURCE_DIR}/src/test.cpp
 	${PROJECT_SOURCE_DIR}/src/MultCmd.cpp
+	${PROJECT_SOURCE_DIR}/src/test.cpp
 )
 
 TARGET_LINK_LIBRARIES(test gtest)
