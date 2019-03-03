@@ -3,7 +3,10 @@
 using namespace std;
 
 Input::Input(char array[]) {
-    populateVector();
+	for (int i = 0; i < 100; i++) {
+		this->input[i] = array[i];
+	}
+	populateVector();
 }
 void Input::getInput() {
     cout << "$ ";
