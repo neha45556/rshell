@@ -21,6 +21,7 @@ bool Or::execute() {
             }
             else {
               //  cout << "RHS returns false" << endl;
+                next->setFlagTrue();
                 return false;
             }
         }

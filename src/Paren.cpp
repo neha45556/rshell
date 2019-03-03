@@ -8,7 +8,7 @@ bool Paren::execute(){
        // cout << "Executing on Commands" << endl;
         for (int i = 0; i < this->CommandLine.size(); i++) {
         //    cout << "Executing command" << endl;
-            this->CommandLine.at(i)->execute();
+            return this->CommandLine.at(i)->execute();
         }
     }
     for (int i = 0; i < this->Connectors.size(); i++) {
