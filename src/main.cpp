@@ -19,10 +19,15 @@ int main () {
         while (!userExit) {
             Input* input = new Input();
             input->getInput();
-            if (input->at(0) == "exit") {
-                userExit = true;
-                exit(0);
-            }
+	if (input->size() == 0) {
+
+	}
+	else {
+            	if (input->at(0) == "exit") {
+               		userExit = true;
+               		exit(0);
+           	}
+	}
             FullCommand* command = new FullCommand();
             command->parse(0, 0, input);
             command->execute();

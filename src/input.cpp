@@ -35,6 +35,9 @@ void Input::getInput() {
             if (copy[i] == ')') {
                 ++rightParen;
             }
+		if (copy[i] == '#' && (leftParen != rightParen)) {
+			break;
+		}
         }
         if (leftParen == rightParen) {
             for (int i = 0; i < 100; i++) {
@@ -60,6 +63,10 @@ void Input::populateVector() {
         size_t findHashtag = VectorInput.at(j).find("#");
         if (findHashtag != string::npos) {
             bool quotesAroundHashtag = false;
+		if (j == VectorInput.size() - 1) {
+			VectorInput.pop_back();
+			break;
+		}
             for (int k = j + 1; k < VectorInput.size(); k++) {
                 size_t quotesAfterHash = VectorInput.at(k).find("\"");
                 if (quotesAfterHash != string::npos) {
