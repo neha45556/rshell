@@ -49,7 +49,21 @@ The class **_or_** is another class derived from Connector. The execute function
 
 The class **_semicolon_** derived from Connector always executes the next command in the input. 
 
-The class **_test_** 
+The class **_test_** derived from Base checks whether the file or directory exists based on the flag and returns a true or false.
+
+The class **_Paren_** derived from Base changes the precedence of the execution of commands,connectors, and grouped commands.
+
+# Test Command
+
+In the test command it should be able to work with the command test and the brackets,[]. The flags -e, -f, -d check if there exists a directory, file, or both. If there exists no flag then it defaults to -e. The command should return true or false based on the output. We used the stat() function, S_ISDIR and S_ISREG to work with full directory paths and relative directory paths. The Test command should combine with other connectors and functionailty successfully. 
+
+test -e src/input.cpp == test src/input.cpp -> returns (TRUE)
+test -f stuff.cpp == [ -f stuff.cpp ] -> returns (FALSE)
+
+# Precedence Operators
+
+
+
 
 # Prototype/Research
 
