@@ -1429,10 +1429,10 @@ bool FullCommand::execute() {
                 counter++;
             }
         }
-        // for (int j = 0; j < Connectors.size(); ++j) {
-        //   // cout << "Executing connector: " << endl;
-        //     Connectors.at(j)->execute();
-        // }
+        for (int j = 0; j < Connectors.size(); ++j) {
+          // cout << "Executing connector: " << endl;
+            Connectors.at(j)->execute();
+        }
     }
 }
 

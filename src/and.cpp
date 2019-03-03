@@ -14,6 +14,7 @@ bool And::execute() {
         }
         else {
             //cout << "LHS has been called, RHS returns false" << endl;
+            next->setFlagTrue();
             return false;
         }
     }
@@ -32,6 +33,7 @@ bool And::execute() {
             }
             else {
                 //cout << "LHS called return true, RHS returns false" << endl;
+                next->setFlagTrue();
                 return false;
             }
         }
