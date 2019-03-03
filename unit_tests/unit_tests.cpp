@@ -115,6 +115,17 @@ TEST(MultipleCommand, QuotesWithConnectors) {
     string expectedOutput = "hello && world\nBasket && ball\n";
     EXPECT_EQ(expectedOutput, output);
 }
+TEST(MultipleCommand, QuotesWithConnectors2) {
+	char inputArray [] = "echo \"hello || world\" || echo \"shouldn't print\" && echo \"also no print\"";
+	Input* input = new Input(inputArray);
+	FullCommand* execute = new FullCommand();
+	execute->parse(0, 0, input);
+	testing::internal::CaptureStdout();
+	execute->execute();
+	string output = testing::internal::GetCapturedStdout();
+	string expectedOutput = "hello || world\n";
+	EXPECT_EQ(expectedOutput, output);
+}
 TEST(SingleCommand, Comment) {
 	char inputArray [] = "echo hello # world";
 	Input* input = new Input(inputArray);
@@ -172,7 +183,6 @@ TEST(testtwo, bracketD){
         string expectedOutput = "(TRUE)\n";
         EXPECT_EQ(expectedOutput, output);
 }
-
 TEST(test3, wordnoFlag){
         char inputArray [] = "test src/Paren.cpp";
         Input* input = new Input(inputArray);
@@ -184,7 +194,6 @@ TEST(test3, wordnoFlag){
         string expectedOutput = "(TRUE)\n";
         EXPECT_EQ(expectedOutput, output);
 }
-
 TEST(test4, wordF){
         char inputArray [] = "test -f src/command.h";
         Input* input = new Input(inputArray);
@@ -196,7 +205,6 @@ TEST(test4, wordF){
         string expectedOutput = "(TRUE)\n";
         EXPECT_EQ(expectedOutput, output);
 }
-
 TEST(test5, wordE){
         char InputArray [] = "test -e src/main.cpp";
         Input* input = new Input(InputArray);
@@ -208,7 +216,6 @@ TEST(test5, wordE){
         string expectedOutput = "(TRUE)\n";
         EXPECT_EQ(expectedOutput, output);
 }
-
 TEST(test6, wordD){
 	char InputArray [] = "test -d integration_tests";
 	Input* input = new Input(InputArray);
@@ -220,7 +227,50 @@ TEST(test6, wordD){
 	string expectedOutput = "(TRUE)\n";
 	EXPECT_EQ(expectedOutput, output);
 }
-
+TEST(SingleCommand, SingleParen) {
+	char inputArray [] = "(echo hello)";
+	Input* input = new Input(inputArray);
+        FullCommand* command = new FullCommand();
+        command->parse(0,0,input);
+        testing::internal::CaptureStdout();
+        command->execute();
+        string output = testing::internal::GetCapturedStdout();
+        string expectedOutput = "hello\n";
+        EXPECT_EQ(expectedOutput, output);	
+}
+TEST(SingleCommand, MultipleParen) {
+	char inputArray [] = "(echo 1; (echo 1; echo 2))";
+	Input* input = new Input(inputArray);
+        FullCommand* command = new FullCommand();
+        command->parse(0,0,input);
+        testing::internal::CaptureStdout();
+        command->execute();
+        string output = testing::internal::GetCapturedStdout();
+        string expectedOutput = "1\n1\n2\n";
+        EXPECT_EQ(expectedOutput, output); 
+}
+TEST(SingleCommand, MultipleParen2) {
+	char inputArray [] = "(echo 1 && (echo 2 || echo 3))";
+        Input* input = new Input(inputArray);
+        FullCommand* command = new FullCommand();
+        command->parse(0,0,input);
+        testing::internal::CaptureStdout();
+        command->execute();
+        string output = testing::internal::GetCapturedStdout();
+        string expectedOutput = "1\n2\n";
+        EXPECT_EQ(expectedOutput, output);	
+}
+TEST(SingleCommand, MultipleParen3) {
+        char inputArray [] = "(echo 1 && (echo 2 || echo 3); (echo 4 && echo 5))";
+        Input* input = new Input(inputArray);
+        FullCommand* command = new FullCommand();
+        command->parse(0,0,input);
+        testing::internal::CaptureStdout();
+        command->execute();
+        string output = testing::internal::GetCapturedStdout();
+        string expectedOutput = "1\n2\n4\n5\n";
+        EXPECT_EQ(expectedOutput, output);
+}
 
 
 int main(int argc, char**argv) {
