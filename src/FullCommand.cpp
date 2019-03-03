@@ -1262,6 +1262,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                         // for (int z = 0; z < SeperatedVector.size(); z++) {
                         //     cout << SeperatedVector.at(z) << endl;
                         // }
+                        SeperatedVector.at(SeperatedVector.size()-1).pop_back();
                         startOfCommand = endOfCommand;
                         Command* command = new Command(SeperatedVector);
                         this->CommandLine.push_back(command);
