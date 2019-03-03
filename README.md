@@ -57,13 +57,19 @@ The class **_Paren_** derived from Base changes the precedence of the execution 
 
 In the test command it should be able to work with the command test and the brackets,[]. The flags -e, -f, -d check if there exists a directory, file, or both. If there exists no flag then it defaults to -e. The command should return true or false based on the output. We used the stat() function, S_ISDIR and S_ISREG to work with full directory paths and relative directory paths. The Test command should combine with other connectors and functionailty successfully. 
 
-test -e src/input.cpp == test src/input.cpp -> returns (TRUE)
+$ test -e src/input.cpp ==  $ test src/input.cpp -> returns (TRUE)
 
-test -f stuff.cpp == [ -f stuff.cpp ] -> returns (FALSE)
+$ test -f stuff.cpp == $ [ -f stuff.cpp ] -> returns (FALSE)
 
 # Precedence Operators
 
+The precedence operators are parentheses ( ) which are used to change the precedence of the execution of commands. There can also be nested parentheses along with multiple sets. The rshell should also be able to recognize uneven parentheses and print an error message. 
 
+$ (echo 2 && echo 3) || echo 5 
+
+$ ((echo 4 || echo 2) && echo 6) 
+
+$ ((((echo hello ))) - uneven set of parentheses
 
 
 # Prototype/Research
