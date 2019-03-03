@@ -57,7 +57,7 @@ The class **_Paren_** derived from Base changes the precedence of the execution 
 
 In the test command it should be able to work with the command test and the brackets,[]. The flags -e, -f, -d check if there exists a directory, file, or both. If there exists no flag then it defaults to -e. The command should return true or false based on the output. We used the stat() function, S_ISDIR and S_ISREG to work with full directory paths and relative directory paths. The Test command should combine with other connectors and functionailty successfully. 
 
-test -e src/input.cpp == test src/input.cpp -> returns (TRUE)
+test -e src/input.cpp == test src/input.cpp -> returns (TRUE).
 test -f stuff.cpp == [ -f stuff.cpp ] -> returns (FALSE)
 
 # Precedence Operators
