@@ -3,14 +3,49 @@
 using namespace std;
 
 Input::Input(char array[]) {
-	for (int i = 0; i < 100; i++) {
-		this->input[i] = array[i];
-	}
-	populateVector();
+	int leftParen = 0;
+    	int rightParen = 0;
+    	for(int i = 0; i < 100; i++) {
+        	this->input[i] = array[i];
+        	if (array[i] == '(') {
+            		++leftParen;
+        	} 
+       	 	if (array[i] == ')') {
+            		++rightParen;
+        	}
+    	}
+    	if (leftParen != rightParen) {
+        	cout << "**ERROR** Unbalanced or unexepected parenthesis. Please enter valid input" << endl;
+        	abort();
+    	}
+    	populateVector();
 }
 void Input::getInput() {
-    cout << "$ ";
-    cin.getline(this->input, 100);
+	bool unevenParen = false;
+    while (!unevenParen) {
+        cout << "$ ";
+        char copy[100] = {0};
+        int leftParen = 0;
+        int rightParen = 0;
+        cin.getline(copy, 100);
+        for (int i = 0; i < 100; i++) {
+            if (copy[i] == '(') {
+                ++leftParen;
+            }
+            if (copy[i] == ')') {
+                ++rightParen;
+            }
+        }
+        if (leftParen == rightParen) {
+            for (int i = 0; i < 100; i++) {
+                this->input[i] = copy[i];    
+            }
+            unevenParen = true;
+        }
+        else {
+            cout << "**ERROR** Unbalanced or unexepected parenthesis. Please enter valid input" << endl;
+        }
+    }
     populateVector();
 }
 void Input::populateVector() {
