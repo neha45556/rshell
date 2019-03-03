@@ -123,7 +123,7 @@ TEST(SingleCommand, Comment) {
 	testing::internal::CaptureStdout();
 	execute->execute();
 	string output = testing::internal::GetCapturedStdout();
-	string expectedOutput = "hello \n";
+	string expectedOutput = "hello\n";
 	EXPECT_EQ(expectedOutput, output);   
 }
 TEST(SingleCommand, CommentWithQuotes) {
@@ -134,7 +134,7 @@ TEST(SingleCommand, CommentWithQuotes) {
 	testing::internal::CaptureStdout();
 	command->execute();
 	string output = testing::internal::GetCapturedStdout();
-	string expectedOutput = "hello \n";
+	string expectedOutput = "hello # world\n";
 	EXPECT_EQ(expectedOutput, output);
 }
 int main(int argc, char**argv) {
