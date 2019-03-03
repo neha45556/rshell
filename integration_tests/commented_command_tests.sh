@@ -5,8 +5,10 @@ cd ..
 ./rshell << EOF
 echo hello # world
 echo "hello # world"
-echo hello # world; ls #-a
-echo "hello # world"; echo hellO #&&; echo end
+echo hello # world; ls # -a
+ls # -a
 echo goodbye
+#echo hello
+#exit
 exit
 EOF
