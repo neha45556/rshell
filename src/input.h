@@ -26,6 +26,7 @@ class Input {
     public:
         Input() { };
         Input(char []);
+        //void parse(int, int);
         void getInput();
         string at(int );
         string ConAt(int );

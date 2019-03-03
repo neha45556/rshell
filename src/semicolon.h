@@ -9,9 +9,6 @@ class Semicolon : public Connector {
     public:
         Semicolon() { };
         Semicolon(Base* , Base* );
-        void deleteHashtag() { };
-        bool findHashtag() { };
-        void printCommand() { };
         bool execute();
         bool checkFlag();
         void setFlagTrue() { };

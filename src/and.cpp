@@ -5,6 +5,7 @@ And::And(Base* lhs, Base* rhs) {
     this->next = rhs;
 }
 bool And::execute() {
+    //cout << "Enter and execute" << endl;
     if(first->checkFlag()) {
         //cout << "LHS has been called" << endl;
         if(next->execute()) {
@@ -13,24 +14,26 @@ bool And::execute() {
         }
         else {
             //cout << "LHS has been called, RHS returns false" << endl;
+            next->setFlagTrue();
             return false;
         }
     }
     else {
         //cout << "LHS has not been called" << endl;
         if (!first->execute()) {
-	    next->setFlagTrue();
             //cout << "LHS returns false" << endl;
+            next->setFlagTrue();
             return false;
         }
         else {
             //cout << "LHS returns true" << endl;
             if (next->execute()) {
-                //cout << "LHS called return true, RHS returns true" << endl;
+               // cout << "LHS called return true, RHS returns true" << endl;
                 return true;
             }
             else {
                 //cout << "LHS called return true, RHS returns false" << endl;
+                next->setFlagTrue();
                 return false;
             }
         }

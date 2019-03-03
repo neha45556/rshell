@@ -1,5 +1,5 @@
-#ifndef EXECUTE_H
-#define EXECUTE_H
+#ifndef MULTCMD_H
+#define MULTCMD_H
 
 #include "Base.hpp"
 #include "input.h"
@@ -21,28 +21,24 @@
 #include <string>
 
 class Input;
-class Command;
+//class Command;
 
 using namespace std;
 
-class Execute : public Base {
+class MultCmd : public Base {
     private:
         vector<Base* > CommandLine;
         vector<Base* > Connectors;
-        // Input* VectorInput = nullptr;
+        vector<string> StringConnectors;
     public:
-        Execute() { };
-        // void setInput(Input* );
-        // void addCommand(Base* );
-        void populateExecute(int, int, Input* );
-        void populateExecuteConnectors(Input* );
-        void deleteHashtag() { };
-        bool findHashtag() { };
-        void printCommand();
+        MultCmd() { };
         bool execute();
         bool checkFlag();
         void setFlagTrue() { };
-        void printExecute();
+        void addConnector(string );
+        void addCommand(Base* );
+        void addManyCommands(int , int , vector<string> );
+        //void printCommand();
 };
 
 #endif

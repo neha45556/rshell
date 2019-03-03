@@ -14,11 +14,15 @@ ADD_EXECUTABLE(rshell
 	${PROJECT_SOURCE_DIR}/src/Base.hpp
 	${PROJECT_SOURCE_DIR}/src/input.cpp
 	${PROJECT_SOURCE_DIR}/src/command.cpp
-	${PROJECT_SOURCE_DIR}/src/execute.cpp
+	${PROJECT_SOURCE_DIR}/src/FullCommand.cpp
 	${PROJECT_SOURCE_DIR}/src/connector.hpp
 	${PROJECT_SOURCE_DIR}/src/semicolon.cpp
 	${PROJECT_SOURCE_DIR}/src/and.cpp
 	${PROJECT_SOURCE_DIR}/src/or.cpp
+	${PROJECT_SOURCE_DIR}/src/Paren.cpp
+	${PROJECT_SOURCE_DIR}/src/MultCmd.cpp
+	${PROJECT_SOURCE_DIR}/src/test.cpp
+
 )
 
 ADD_EXECUTABLE(test
@@ -26,11 +30,14 @@ ADD_EXECUTABLE(test
 	${PROJECT_SOURCE_DIR}/src/Base.hpp
         ${PROJECT_SOURCE_DIR}/src/input.cpp
         ${PROJECT_SOURCE_DIR}/src/command.cpp
-        ${PROJECT_SOURCE_DIR}/src/execute.cpp
+        ${PROJECT_SOURCE_DIR}/src/FullCommand.cpp
         ${PROJECT_SOURCE_DIR}/src/connector.hpp
         ${PROJECT_SOURCE_DIR}/src/semicolon.cpp
         ${PROJECT_SOURCE_DIR}/src/and.cpp
         ${PROJECT_SOURCE_DIR}/src/or.cpp
+	${PROJECT_SOURCE_DIR}/src/Paren.cpp
+	${PROJECT_SOURCE_DIR}/src/MultCmd.cpp
+	${PROJECT_SOURCE_DIR}/src/test.cpp
 )
 
 TARGET_LINK_LIBRARIES(test gtest)
