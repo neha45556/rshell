@@ -33,7 +33,7 @@ The program will implement this through a composite pattern from which the class
 
 # Classes
 
-Our class group is **_FullCommand_** , **_connector_** and **_command_** which all inherit from the single base class of **_base_**. On top of that we have three classes that derive from the **_connector_** class called **_and_**, **_semicolon_**, and **_or_**. 
+Our class group is **_FullCommand_** , **_connector_**, **_command_**, **_Paren_**, **_Test_**, **_MultCmd_** which all inherit from the single base class of **_base_**. On top of that we have three classes that derive from the **_connector_** class called **_and_**, **_semicolon_**, and **_or_**. 
 
 The base class **_base_** will carry functions to help us identify whether the client has included comments which are preceded by hastags, which indicate comments must be ignored. The base class encapsulates a bool function called flag which is used in other classes to indicate how and when to implement the connectors. 
 
@@ -51,9 +51,11 @@ The class **_or_** is another class derived from Connector. The execute function
 
 The class **_semicolon_** derived from Connector always executes the next command in the input. 
 
-The class **_test_** derived from Base checks whether the file or directory exists based on the flag and returns a true or false.
+The class **_test_** derived from Base checks whether the file or directory exists based on the flag and returns a true or false. 
 
 The class **_Paren_** derived from Base changes the precedence of the execution of commands,connectors, and grouped commands.
+
+The class **_MultCmd_** has a vector of type Base* called CommandLine which identifies whether the input has multiple commands. This class derives from the Base class and has functionality which indicates whether 
 
 # Test Command
 
