@@ -1355,7 +1355,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
             //cout << "Reached the end of the Vector" << endl;
             vector<string > SeperatedVector;
             for(int m = startOfCommand; m < VectorInput->size(); m++) {
-                cout << VectorInput->at(m) << endl;
+                //cout << VectorInput->at(m) << endl;
                 string str = VectorInput->at(m);
                 str.erase(std::remove(str.begin(), str.end(), '\"'), str.end());
                 str.erase(std::remove(str.begin(), str.end(), '('), str.end());
