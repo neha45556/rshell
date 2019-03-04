@@ -1,4 +1,4 @@
-#include "gtest/gtest.h"
+nclude "gtest/gtest.h"
 #include "input.h"
 #include "command.h"
 #include "FullCommand.h"
@@ -305,14 +305,14 @@ TEST(SingleCommand, ParenQuotes) {
         EXPECT_EQ(expectedOutput, output);
 }
 TEST(SingleCommand, ParenQuotesCon) {
-	char inputArray [] = "(echo \"1; 2\"; echo \"3 ||4\"";
+	char inputArray [] = "(echo \"1; 2\"; echo \"3 && 4\"; echo \"5 || 6\")";
         Input* input = new Input(inputArray);
         FullCommand* command = new FullCommand();
         command->parse(0, 0, input);
         testing::internal::CaptureStdout();
         command->execute();
         string output = testing::internal::GetCapturedStdout();
-        string expectedOutput = "1;2\n3 ||4\n";
+        string expectedOutput = "1;2\n3 && 4\n5 || 6\n";
         EXPECT_EQ(expectedOutput, output);
 }
 
