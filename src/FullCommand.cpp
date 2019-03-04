@@ -950,7 +950,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
         else if (foundSemi != string::npos) {
             bool foundQuotes = false;
             int endOfQuotes = 0;
-            for (int j = i + 1; j < VectorInput->size(); j++) {
+            for (int j = startOfCommand; j <= i; j++) {
                 size_t quotesAfterSemi = VectorInput->at(j).find("\"");
                 if (quotesAfterSemi != string::npos) {
                     // cout << "quotes = true" << endl;
@@ -1087,7 +1087,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
             // cout << "Found or" << endl;
             bool foundQuotes = false;
             int endOfQuotes = 0;
-            for (int j = i + 1; j < VectorInput->size(); j++) {
+            for (int j = startOfCommand; j <= i; j++) {
                 size_t quotesAfterOr = VectorInput->at(j).find("\"");
                 if (quotesAfterOr != string::npos) {
                     // cout << "quotes = true" << endl;
@@ -1216,7 +1216,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
             //cout << "Found &&" << endl;
             bool foundQuotes = false;
             int endOfQuotes = 0;
-            for (int j = i + 1; j < VectorInput->size(); j++) {
+            for (int j = startOfCommand; j <= i; j++) {
                 size_t quotesAfterAnd = VectorInput->at(j).find("\"");
                 if (quotesAfterAnd != string::npos) {
                     //cout << "quotes = true" << endl;
