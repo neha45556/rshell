@@ -271,7 +271,50 @@ TEST(SingleCommand, MultipleParen3) {
         string expectedOutput = "1\n2\n4\n5\n";
         EXPECT_EQ(expectedOutput, output);
 }
-
+TEST(MultipleCommand, SingleParenWithCMD) {
+	char inputArray [] = "(echo 1; echo 2); echo 3";
+	Input* input = new Input(inputArray);
+	FullCommand* command = new FullCommand();
+	command->parse(0, 0, input);
+	testing::internal::CaptureStdout();
+	command->execute();
+	string output = testing::internal::GetCapturedStdout();
+	string expectedOutput = "1\n2\n3\n";
+	EXPECT_EQ(expectedOutput, output);
+}
+TEST(MultipleCommand, MultipleParen) {
+	char inputArray [] = "echo 1 && (echo 2 || echo 3); (echo 4 || echo 5)";
+        Input* input = new Input(inputArray);
+        FullCommand* command = new FullCommand();
+        command->parse(0, 0, input);
+        testing::internal::CaptureStdout();
+        command->execute();
+        string output = testing::internal::GetCapturedStdout();
+        string expectedOutput = "1\n2\n4\n";
+        EXPECT_EQ(expectedOutput, output);
+}
+TEST(SingleCommand, ParenQuotes) {
+	char inputArray [] = "(echo \"hello world\")";
+        Input* input = new Input(inputArray);
+        FullCommand* command = new FullCommand();
+        command->parse(0, 0, input);
+        testing::internal::CaptureStdout();
+        command->execute();
+        string output = testing::internal::GetCapturedStdout();
+        string expectedOutput = "hello world\n";
+        EXPECT_EQ(expectedOutput, output);
+}
+TEST(SingleCommand, ParenQuotesCon) {
+	char inputArray [] = "(echo \"1; 2\"; echo \"3 && 4\"; echo \"5 || 6\")";
+        Input* input = new Input(inputArray);
+        FullCommand* command = new FullCommand();
+        command->parse(0, 0, input);
+        testing::internal::CaptureStdout();
+        command->execute();
+        string output = testing::internal::GetCapturedStdout();
+        string expectedOutput = "1;2\n3 && 4\n5 || 6\n";
+        EXPECT_EQ(expectedOutput, output);
+}
 
 int main(int argc, char**argv) {
     ::testing::InitGoogleTest(&argc, argv);
