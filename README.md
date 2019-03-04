@@ -55,7 +55,7 @@ The class **_test_** derived from Base checks whether the file or directory exis
 
 The class **_Paren_** derived from Base changes the precedence of the execution of commands,connectors, and grouped commands.
 
-The class **_MultCmd_** has a vector of type Base* called CommandLine which identifies whether the input has multiple commands. This class derives from the Base class and has functionality which keeps tracks of what is inside the Parentheses. 
+The class **_MultCmd_** has a vector of type Base* called CommandLine which identifies whether the input has multiple commands. This class derives from the Base class and has functionality which keeps tracks of what is inside the precedence operator (). 
 
 # Test Command
 
