@@ -11,4 +11,6 @@ test -e src/stuff.cpp || echo “failed”
 test -d direc 
 test src/command.h
 (test test.cpp)
+exit
 EOF
+
