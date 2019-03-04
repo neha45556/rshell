@@ -12,6 +12,8 @@ In this program our goal is to develop a command shell called rshell. This progr
   2. Read in a line of commands(s) (and connectors(s)) from standard input
   3. Execute the appropriate commands through the use of __fork__, __execvp__, and __waitpid__
   4. Ability to interact with both quotes(" ") and the hashtag symbol(#) to alter the output of certain commands.
+  5. Able to check for file and directory existence through the use of the test command and brackets
+  6. The precedence operator () will change the precedence of the execution of commands
 
 ## Connectors
 
@@ -19,7 +21,7 @@ Connectors will be implemented in our pattern through the use of three different
 
 ## Method
 
-The program will implement this through a composite pattern from which the classes known as **_FullCommand_**, **_connector_** and **_command_** are derived from a shared base interface class known as **_base_**. There are three classes which derive from **_connector_** called **_and_** , **_or_** , and **_semicolon_**. We have an additional class called **_input_** which stores the client's input and parses through the char* array. Our client will first create a new **_input_** object and call the function known as _getInput()_. They will be then prompted to input a command that we will then tokenize using _strtok()_ into two seperate vectors encapsulated in the **_input_** class that holds the commmands and one that holds the connectors. From there they will create a new **_FullCommand_** object that they will immediately call two functions on it, known as _populateExecute()_ and _populateExecuteConnectors_. This will take in the vectors from the object **_input_** and create two new vectors of type **_base_** pointer that holds **_commands_** and **_connectors_**. From there the client will finally call execute on their **_FullCommand_** object and in turn execute the correct output using both vectors. 
+The program will implement this through a composite pattern from which the classes known as **_FullCommand_**, **_connector_**, **_Paren_**, **_Test_**, **_MultCmd_**, **_command_** are derived from a shared base interface class known as **_base_**. There are three classes which derive from **_connector_** called **_and_** , **_or_** , and **_semicolon_**. We have an additional class called **_input_** which stores the client's input and parses through the char* array. Our client will first create a new **_input_** object and call the function known as _getInput()_. They will be then prompted to input a command that we will then tokenize using _strtok()_ into two seperate vectors encapsulated in the **_input_** class that holds the commmands and one that holds the connectors. From there they will create a new **_FullCommand_** object that they will immediately call two functions on it, known as _parse()_ and _execute_. This will take in the vectors from the object **_input_** and create two new vectors of type **_base_** pointer that holds **_commands_** and **_connectors_**. From there the client will finally call execute on their **_FullCommand_** object and in turn execute the correct output using both vectors. 
 
 # Diagram
 
@@ -31,7 +33,7 @@ The program will implement this through a composite pattern from which the class
 
 # Classes
 
-Our class group is **_FullCommand_** , **_connector_** and **_command_** which all inherit from the single base class of **_base_**. On top of that we have three classes that derive from the **_connector_** class called **_and_**, **_semicolon_**, and **_or_**. 
+Our class group is **_FullCommand_** , **_connector_**, **_command_**, **_Paren_**, **_Test_**, **_MultCmd_** which all inherit from the single base class of **_base_**. On top of that we have three classes that derive from the **_connector_** class called **_and_**, **_semicolon_**, and **_or_**. 
 
 The base class **_base_** will carry functions to help us identify whether the client has included comments which are preceded by hastags, which indicate comments must be ignored. The base class encapsulates a bool function called flag which is used in other classes to indicate how and when to implement the connectors. 
 
@@ -49,9 +51,11 @@ The class **_or_** is another class derived from Connector. The execute function
 
 The class **_semicolon_** derived from Connector always executes the next command in the input. 
 
-The class **_test_** derived from Base checks whether the file or directory exists based on the flag and returns a true or false.
+The class **_test_** derived from Base checks whether the file or directory exists based on the flag and returns a true or false. 
 
 The class **_Paren_** derived from Base changes the precedence of the execution of commands,connectors, and grouped commands.
+
+The class **_MultCmd_** has a vector of type Base* called CommandLine which identifies whether the input has multiple commands. This class derives from the Base class and has functionality which keeps tracks of what is inside the precedence operator (). 
 
 # Test Command
 
