@@ -3,10 +3,10 @@
 using namespace std;
 
 void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput) {
-    //cout << "Enters populate Execute function" << endl;
+    // cout << "Enters populate Execute function" << endl;
     //cout << VectorInput->size() << endl;
     for (int i = startOfCommand; i < VectorInput->size(); i++) {
-        // << "Iterates through VectorInput" << endl;
+        //cout << "Iterates through VectorInput" << endl;
         size_t foundParen = VectorInput->at(i).find("(");
         size_t foundSemi = VectorInput->at(i).find(";");
         size_t foundOr = VectorInput->at(i).find("|");
@@ -15,7 +15,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
         // size_t foundHash = VectorInput->at(i).find("#");
         vector<string > SeperatedVector;
         if (foundParen != string::npos) {
-            // << "Found Paren" << endl;
+            // cout << "Found Paren" << endl;
             // cout << "Quotes exist in paren" << endl;
             // Paren* paren = new Paren();
             // MultCmd* mult = new MultCmd();
@@ -69,7 +69,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
             startOfCommand = i;
             bool foundRightParen = false;
             for (int j = startOfCommand; j < VectorInput->size(); j++) { 
-                // << "Searching in paren" << endl;
+                // cout << "Searching in paren" << endl;
                 size_t parenQuotes = VectorInput->at(j).find("\""); 
                 size_t rightParen = VectorInput->at(j).find(")");
                 size_t parenSemi = VectorInput->at(j).find(";");
@@ -224,7 +224,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                                 startOfCommand = endOfCommand;
                                 this->StringConnectors.push_back(";");
                                 this->CommandLine.push_back(paren);
-                                //cout << endOfCommand << " " << startOfCommand << endl;
+                                // cout << endOfCommand << " " << startOfCommand << endl;
                                 parse(startOfCommand, endOfCommand, VectorInput);
                                 foundRightParen = true;
                                 break;
@@ -248,13 +248,13 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                                 startOfCommand = endOfCommand + 1;
                                 this->StringConnectors.push_back("||");
                                 this->CommandLine.push_back(paren);
-                                //cout << endOfCommand << " " << startOfCommand << endl;
+                                // cout << endOfCommand << " " << startOfCommand << endl;
                                 foundRightParen = true;
                                 parse(startOfCommand, endOfCommand, VectorInput);
                                 break;
                             }
                             else if (nextAnd != string::npos) {
-                                //cout << "Finds next And" << endl;
+                                // cout << "Finds next And" << endl;
                                 endOfCommand = m;
                                 for (int n = startOfCommand; n < endOfCommand; n++) {
                                     // cout << "Insert: " << VectorInput->at(n) << endl;
@@ -272,7 +272,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                                 startOfCommand = endOfCommand + 1;
                                 this->StringConnectors.push_back("&&");
                                 this->CommandLine.push_back(paren);
-                                //cout << endOfCommand << " " << startOfCommand << endl;
+                                // cout << endOfCommand << " " << startOfCommand << endl;
                                 foundRightParen = true;
                                 parse(startOfCommand, endOfCommand, VectorInput);
                                 break;
@@ -356,7 +356,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                                                     startOfCommand = endOfCommand;
                                                     this->StringConnectors.push_back(";");
                                                     this->CommandLine.push_back(paren);
-                                                    //cout << endOfCommand << " " << startOfCommand << endl;
+                                                    // cout << endOfCommand << " " << startOfCommand << endl;
                                                     parse(startOfCommand, endOfCommand, VectorInput);
                                                     foundRightParen = true;
                                                     break;
@@ -377,7 +377,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                                                         SeperatedVector.push_back(str);
                                                     }
                                                     // for (int z = 0; z < SeperatedVector.size(); z++) {
-                                                    //     cout << SeperatedVector.at(z) << endl;
+                                                        // cout << SeperatedVector.at(z) << endl;
                                                     // }
                                                     Command* command = new Command(SeperatedVector);
                                                     mult->addCommand(command);
@@ -385,7 +385,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                                                     startOfCommand = endOfCommand + 1;
                                                     this->StringConnectors.push_back("||");
                                                     this->CommandLine.push_back(paren);
-                                                    //cout << endOfCommand << " " << startOfCommand << endl;
+                                                    // cout << endOfCommand << " " << startOfCommand << endl;
                                                     foundRightParen = true;
                                                     parse(startOfCommand, endOfCommand, VectorInput);
                                                     break;
@@ -414,7 +414,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                                                     startOfCommand = endOfCommand + 1;
                                                     this->StringConnectors.push_back("&&");
                                                     this->CommandLine.push_back(paren);
-                                                    //cout << endOfCommand << " " << startOfCommand << endl;
+                                                    // cout << endOfCommand << " " << startOfCommand << endl;
                                                     foundRightParen = true;
                                                     parse(startOfCommand, endOfCommand, VectorInput);
                                                     break;
@@ -441,7 +441,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                                             SingleVector.push_back(str);
                                         }
                                         startOfCommand = jj + 1;
-                                        //cout << startOfCommand << endl;
+                                        // cout << startOfCommand << endl;
                                         SingleVector.at(SingleVector.size()-1).pop_back();
                                         Command* command = new Command(SingleVector);
                                         mult->addCommand(command);
@@ -463,7 +463,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                                             SingleVector.push_back(str);
                                         }
                                         startOfCommand = jj + 1;
-                                        //cout << startOfCommand << endl;
+                                        // cout << startOfCommand << endl;
                                         Command* command = new Command(SingleVector);
                                         mult->addCommand(command);
                                     }
@@ -484,7 +484,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                                             SingleVector.push_back(str);
                                         }
                                         startOfCommand = jj + 1;
-                                        //cout << startOfCommand << endl;
+                                        // cout << startOfCommand << endl;
                                         Command* command = new Command(SingleVector);
                                         mult->addCommand(command);
                                     }
@@ -506,7 +506,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                             SingleVector.push_back(str);
                         }
                         startOfCommand = j + 1;
-                        //cout << startOfCommand << endl;
+                        // cout << startOfCommand << endl;
                         SingleVector.at(SingleVector.size()-1).pop_back();
                         Command* command = new Command(SingleVector);
                         mult->addCommand(command);
@@ -574,7 +574,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                                                     }
                                                     SeperatedVector.at(SeperatedVector.size()-1).pop_back();
                                                     // for (int z = 0; z < SeperatedVector.size(); z++) {
-                                                    //     cout << SeperatedVector.at(z) << endl;
+                                                        // cout << SeperatedVector.at(z) << endl;
                                                     // }
                                                     Command* command = new Command(SeperatedVector);
                                                     mult->addCommand(command);
@@ -582,7 +582,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                                                     startOfCommand = endOfCommand;
                                                     this->StringConnectors.push_back(";");
                                                     this->CommandLine.push_back(paren);
-                                                    //cout << endOfCommand << " " << startOfCommand << endl;
+                                                    // cout << endOfCommand << " " << startOfCommand << endl;
                                                     parse(startOfCommand, endOfCommand, VectorInput);
                                                     foundRightParen = true;
                                                     break;
@@ -599,7 +599,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                                                         SeperatedVector.push_back(str);
                                                     }
                                                     // for (int z = 0; z < SeperatedVector.size(); z++) {
-                                                    //     cout << SeperatedVector.at(z) << endl;
+                                                        // cout << SeperatedVector.at(z) << endl;
                                                     // }
                                                     Command* command = new Command(SeperatedVector);
                                                     mult->addCommand(command);
@@ -607,7 +607,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                                                     startOfCommand = endOfCommand + 1;
                                                     this->StringConnectors.push_back("||");
                                                     this->CommandLine.push_back(paren);
-                                                    //cout << endOfCommand << " " << startOfCommand << endl;
+                                                    // cout << endOfCommand << " " << startOfCommand << endl;
                                                     foundRightParen = true;
                                                     parse(startOfCommand, endOfCommand, VectorInput);
                                                     break;
@@ -632,7 +632,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                                                     startOfCommand = endOfCommand + 1;
                                                     this->StringConnectors.push_back("&&");
                                                     this->CommandLine.push_back(paren);
-                                                    //cout << endOfCommand << " " << startOfCommand << endl;
+                                                    // cout << endOfCommand << " " << startOfCommand << endl;
                                                     foundRightParen = true;
                                                     parse(startOfCommand, endOfCommand, VectorInput);
                                                     break;
@@ -658,7 +658,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                                             SingleVector.push_back(str);
                                         }
                                         startOfCommand = jj + 1;
-                                        //cout << startOfCommand << endl;
+                                        // cout << startOfCommand << endl;
                                         SingleVector.at(SingleVector.size()-1).pop_back();
                                         Command* command = new Command(SingleVector);
                                         mult->addCommand(command);
@@ -680,7 +680,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                                             SingleVector.push_back(str);
                                         }
                                         startOfCommand = jj;
-                                        //cout << startOfCommand << endl;
+                                        // cout << startOfCommand << endl;
                                         Command* command = new Command(SingleVector);
                                         mult->addCommand(command);
                                     }
@@ -701,7 +701,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                                             SingleVector.push_back(str);
                                         }
                                         startOfCommand = jj;
-                                        //cout << startOfCommand << endl;
+                                        // cout << startOfCommand << endl;
                                         Command* command = new Command(SingleVector);
                                         mult->addCommand(command);
                                     }
@@ -721,7 +721,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                             str.erase(std::remove(str.begin(), str.end(), ')'), str.end());
                             SingleVector.push_back(str);
                         }
-                        startOfCommand = j;
+                        startOfCommand = j + 1;
                         Command* command = new Command(SingleVector);
                         mult->addCommand(command);
                     }
@@ -788,7 +788,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                                                     }
                                                     SeperatedVector.at(SeperatedVector.size()-1).pop_back();
                                                     // for (int z = 0; z < SeperatedVector.size(); z++) {
-                                                    //     // cout << SeperatedVector.at(z) << endl;
+                                                        // cout << SeperatedVector.at(z) << endl;
                                                     // }
                                                     Command* command = new Command(SeperatedVector);
                                                     mult->addCommand(command);
@@ -802,10 +802,10 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                                                     break;
                                                 }
                                                 else if (nextOr != string::npos) {
-                                                    cout << "Finds next Or" << endl;
+                                                    // cout << "Finds next Or" << endl;
                                                     endOfCommand = m;
                                                     for (int n = startOfCommand; n < endOfCommand; n++) {
-                                                        cout << "Insert: " << VectorInput->at(n) << endl;
+                                                        // cout << "Insert: " << VectorInput->at(n) << endl;
                                                         string str = VectorInput->at(n);
                                                         str.erase(std::remove(str.begin(), str.end(), '\"'), str.end());
                                                         str.erase(std::remove(str.begin(), str.end(), '('), str.end());
@@ -813,7 +813,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                                                         SeperatedVector.push_back(str);
                                                     }
                                                     // for (int z = 0; z < SeperatedVector.size(); z++) {
-                                                    //     cout << SeperatedVector.at(z) << endl;
+                                                        // cout << SeperatedVector.at(z) << endl;
                                                     // }
                                                     Command* command = new Command(SeperatedVector);
                                                     mult->addCommand(command);
@@ -821,7 +821,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                                                     startOfCommand = endOfCommand + 1;
                                                     this->StringConnectors.push_back("||");
                                                     this->CommandLine.push_back(paren);
-                                                    //cout << endOfCommand << " " << startOfCommand << endl;
+                                                    // cout << endOfCommand << " " << startOfCommand << endl;
                                                     foundRightParen = true;
                                                     parse(startOfCommand, endOfCommand, VectorInput);
                                                     break;
@@ -838,7 +838,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                                                         SeperatedVector.push_back(str);
                                                     }
                                                     // for (int z = 0; z < SeperatedVector.size(); z++) {
-                                                    //     cout << SeperatedVector.at(z) << endl;
+                                                        // cout << SeperatedVector.at(z) << endl;
                                                     // }
                                                     Command* command = new Command(SeperatedVector);
                                                     mult->addCommand(command);
@@ -846,7 +846,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                                                     startOfCommand = endOfCommand + 1;
                                                     this->StringConnectors.push_back("&&");
                                                     this->CommandLine.push_back(paren);
-                                                    //cout << endOfCommand << " " << startOfCommand << endl;
+                                                    // cout << endOfCommand << " " << startOfCommand << endl;
                                                     foundRightParen = true;
                                                     parse(startOfCommand, endOfCommand, VectorInput);
                                                     break;
@@ -872,7 +872,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                                             SingleVector.push_back(str);
                                         }
                                         startOfCommand = jj + 1;
-                                        //cout << startOfCommand << endl;
+                                        // cout << startOfCommand << endl;
                                         SingleVector.at(SingleVector.size()-1).pop_back();
                                         Command* command = new Command(SingleVector);
                                         mult->addCommand(command);
@@ -894,7 +894,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                                             SingleVector.push_back(str);
                                         }
                                         startOfCommand = jj;
-                                        //cout << startOfCommand << endl;
+                                        // cout << startOfCommand << endl;
                                         Command* command = new Command(SingleVector);
                                         mult->addCommand(command);
                                     }
@@ -915,7 +915,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                                             SingleVector.push_back(str);
                                         }
                                         startOfCommand = jj;
-                                        //cout << startOfCommand << endl;
+                                        // cout << startOfCommand << endl;
                                         Command* command = new Command(SingleVector);
                                         mult->addCommand(command);
                                     }
@@ -937,7 +937,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                             SingleVector.push_back(str);
                         }
                         // for (int z = 0; z < SingleVector.size(); z++) {
-                        //     cout << SingleVector.at(z) << endl;;
+                            // cout << SingleVector.at(z) << endl;;
                         // }
                         startOfCommand = j + 1;
                         Command* command = new Command(SingleVector);
@@ -951,12 +951,16 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
             bool foundQuotes = false;
             int endOfQuotes = 0;
             for (int j = startOfCommand; j <= i; j++) {
-                size_t quotesAfterSemi = VectorInput->at(j).find("\"");
-                if (quotesAfterSemi != string::npos) {
-                    // cout << "quotes = true" << endl;
-                    foundQuotes = true;
-                    endOfQuotes = j;
-                    break;
+                size_t quotesBeforeSemi = VectorInput->at(j).find("\"");
+                if (quotesBeforeSemi != string::npos) {
+                    for (int jj = j + 1; jj < VectorInput->size(); jj++) {
+                        size_t quotesAfterSemi = VectorInput->at(jj).find("\"");
+                        if (quotesAfterSemi != string::npos) {
+                            foundQuotes = true;
+                            endOfQuotes = jj;
+                            break;
+                        }
+                    }
                 }
             }
             if (!foundQuotes) {
@@ -971,7 +975,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                     SeperatedVector.push_back(str);
                 }
                 // for (int z = 0; z < SeperatedVector.size(); z++) {
-                //     cout << SeperatedVector.at(z) << endl;
+                    // cout << SeperatedVector.at(z) << endl;
                 // }
                 // cout << "Creates new vector" << endl;
                 startOfCommand = endOfCommand;
@@ -983,7 +987,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                 break;
             }
             else {
-                // cout << "Quotes do exist" << endl;
+                // / << "Quotes do exist" << endl;
                 //if (the next element or current element equals connectors)                
                 for (int k = endOfQuotes; k < VectorInput->size(); k++) {
                     size_t foundSemi2 = VectorInput->at(k).find(";");
@@ -999,7 +1003,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                             SeperatedVector.push_back(str);
                         }
                         // for (int z = 0; z < SeperatedVector.size(); z++) {
-                        //     cout << SeperatedVector.at(z) << endl;
+                            // cout << SeperatedVector.at(z) << endl;
                         // }
                         startOfCommand = endOfCommand;
                         SeperatedVector.at(SeperatedVector.size()-1).pop_back();
@@ -1021,7 +1025,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                             SeperatedVector.push_back(str);
                         }
                         // for (int z = 0; z < SeperatedVector.size(); z++) {
-                        //     cout << SeperatedVector.at(z) << endl;
+                            // cout << SeperatedVector.at(z) << endl;
                         // }
                         startOfCommand = endOfCommand;
                         //SeperatedVector.at(SeperatedVector.size()-1).pop_back();
@@ -1043,7 +1047,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                             SeperatedVector.push_back(str);
                         }
                         // for (int z = 0; z < SeperatedVector.size(); z++) {
-                        //     cout << SeperatedVector.at(z) << endl;
+                            // cout << SeperatedVector.at(z) << endl;
                         // }
                         startOfCommand = endOfCommand;
                         //SeperatedVector.at(SeperatedVector.size()-1).pop_back();
@@ -1065,7 +1069,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                             SeperatedVector.push_back(str);
                         }
                         // for (int z = 0; z < SeperatedVector.size(); z++) {
-                        //     cout << SeperatedVector.at(z) << endl;
+                            // cout << SeperatedVector.at(z) << endl;
                         // }
                         Command* command = new Command(SeperatedVector);
                         this->CommandLine.push_back(command);
@@ -1088,12 +1092,16 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
             bool foundQuotes = false;
             int endOfQuotes = 0;
             for (int j = startOfCommand; j <= i; j++) {
-                size_t quotesAfterOr = VectorInput->at(j).find("\"");
-                if (quotesAfterOr != string::npos) {
-                    // cout << "quotes = true" << endl;
-                    foundQuotes = true;
-                    endOfQuotes = j;
-                    break;
+                size_t quotesBeforeSemi = VectorInput->at(j).find("\"");
+                if (quotesBeforeSemi != string::npos) {
+                    for (int jj = j + 1; jj < VectorInput->size(); jj++) {
+                        size_t quotesAfterSemi = VectorInput->at(jj).find("\"");
+                        if (quotesAfterSemi != string::npos) {
+                            foundQuotes = true;
+                            endOfQuotes = jj;
+                            break;
+                        }
+                    }
                 }
             }
             if (!foundQuotes) {
@@ -1106,7 +1114,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                     SeperatedVector.push_back(str);
                 }
                 // for (int z = 0; z < SeperatedVector.size(); z++) {
-                //     cout << SeperatedVector.at(z) << endl;
+                    // cout << SeperatedVector.at(z) << endl;
                 // }
                 // cout << "Creates new vector" << endl;
                 startOfCommand = endOfCommand + 1;
@@ -1133,7 +1141,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                             SeperatedVector.push_back(str);
                         }
                         // for (int z = 0; z < SeperatedVector.size(); z++) {
-                        //     cout << SeperatedVector.at(z) << endl;
+                            // cout << SeperatedVector.at(z) << endl;
                         // }
                         startOfCommand = endOfCommand;
                         Command* command = new Command(SeperatedVector);
@@ -1162,15 +1170,15 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                         this->CommandLine.push_back(command);
                         startOfCommand = endOfCommand;
                         StringConnectors.push_back("&&");
-                        // cout << endOfCommand << " " << startOfCommand << endl;
+                        //cout << endOfCommand << " " << startOfCommand << endl;
                         parse(startOfCommand, endOfCommand, VectorInput);
                         break;
                     }
                     else if (foundOr2 != string::npos) {
-                        // cout << "Finds next ||" << endl;
+                        //cout << "Finds next ||" << endl;
                         endOfCommand = k + 1;
                         for (int k = startOfCommand; k < endOfCommand - 1; k++) {
-                            // cout << "Insert: " << VectorInput->at(k) << endl;
+                            //cout << "Insert: " << VectorInput->at(k) << endl;
                             string str = VectorInput->at(k);
                             str.erase(std::remove(str.begin(), str.end(), '\"'), str.end());
                             SeperatedVector.push_back(str);
@@ -1184,15 +1192,15 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                         this->CommandLine.push_back(command);
                         startOfCommand = endOfCommand;
                         StringConnectors.push_back("||");
-                        // cout << endOfCommand << " " << startOfCommand << endl;
+                        //cout << endOfCommand << " " << startOfCommand << endl;
                         parse(startOfCommand, endOfCommand, VectorInput);
                         break;
                     }
                     else if (k == VectorInput->size()- 1) {
-                        // cout << "Reached the end of the Vector" << endl;
+                        //cout << "Reached the end of the Vector" << endl;
                         vector<string > SeperatedVector;
                         for(int m = startOfCommand; m < VectorInput->size(); m++) {
-                            // cout << VectorInput->at(m) << endl;
+                            //cout << VectorInput->at(m) << endl;
                             string str = VectorInput->at(m);
                             str.erase(std::remove(str.begin(), str.end(), '\"'), str.end());    
                             SeperatedVector.push_back(str);
@@ -1202,7 +1210,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                         // }
                         Command* command = new Command(SeperatedVector);
                         this->CommandLine.push_back(command);
-                        // cout << "Pushed in one command" << endl;
+                        //cout << "Pushed in one command" << endl;
                         break; 
                     }
                     else {
@@ -1217,12 +1225,16 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
             bool foundQuotes = false;
             int endOfQuotes = 0;
             for (int j = startOfCommand; j <= i; j++) {
-                size_t quotesAfterAnd = VectorInput->at(j).find("\"");
-                if (quotesAfterAnd != string::npos) {
-                    //cout << "quotes = true" << endl;
-                    foundQuotes = true;
-                    endOfQuotes = j;
-                    break;
+                size_t quotesBeforeSemi = VectorInput->at(j).find("\"");
+                if (quotesBeforeSemi != string::npos) {
+                    for (int jj = j + 1; jj < VectorInput->size(); jj++) {
+                        size_t quotesAfterSemi = VectorInput->at(jj).find("\"");
+                        if (quotesAfterSemi != string::npos) {
+                            foundQuotes = true;
+                            endOfQuotes = jj;
+                            break;
+                        }
+                    }
                 }
             }
             if (!foundQuotes) {
@@ -1234,7 +1246,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                     SeperatedVector.push_back(str);
                 }
                 // for (int z = 0; z < SeperatedVector.size(); z++) {
-                //     cout << SeperatedVector.at(z) << endl;
+                    // cout << SeperatedVector.at(z) << endl;
                 // }
                 startOfCommand = endOfCommand + 1;
                 Command* command = new Command(SeperatedVector);
@@ -1251,10 +1263,10 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                     size_t foundAnd2 = VectorInput->at(k).find("&&");
                     size_t foundOr2 = VectorInput->at(k).find("||");
                     if (foundSemi2 != string::npos) {
-                        //cout << "Finds next or" << endl;
+                        //cout << "Finds next semi" << endl;
                         endOfCommand = k + 1;
                         for (int k = startOfCommand; k < endOfCommand; k++) {
-                            cout << "Insert: " << VectorInput->at(k) << endl;
+                            //cout << "Insert: " << VectorInput->at(k) << endl;
                             string str = VectorInput->at(k);
                             str.erase(std::remove(str.begin(), str.end(), '\"'), str.end());
                             SeperatedVector.push_back(str);
@@ -1282,7 +1294,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                             SeperatedVector.push_back(str);
                         }
                         // for (int z = 0; z < SeperatedVector.size(); z++) {
-                        //     cout << SeperatedVector.at(z) << endl;
+                            // cout << SeperatedVector.at(z) << endl;
                         // }
                         startOfCommand = endOfCommand;
                         //SeperatedVector.at(SeperatedVector.size()-1).pop_back();
@@ -1290,7 +1302,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                         this->CommandLine.push_back(command);
                         startOfCommand = endOfCommand;
                         StringConnectors.push_back("&&");
-                        // cout << endOfCommand << " " << startOfCommand << endl;
+                        //cout << endOfCommand << " " << startOfCommand << endl;
                         parse(startOfCommand, endOfCommand, VectorInput);
                         break;
                     }
@@ -1298,13 +1310,13 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                         //cout << "Finds next ||" << endl;
                         endOfCommand = k + 1;
                         for (int k = startOfCommand; k < endOfCommand - 1; k++) {
-                           // cout << "Insert: " << VectorInput->at(k) << endl;
+                            //cout << "Insert: " << VectorInput->at(k) << endl;
                             string str = VectorInput->at(k);
                             str.erase(std::remove(str.begin(), str.end(), '\"'), str.end());
                             SeperatedVector.push_back(str);
                         }
                         // for (int z = 0; z < SeperatedVector.size(); z++) {
-                        //     cout << SeperatedVector.at(z) << endl;
+                            // cout << SeperatedVector.at(z) << endl;
                         // }
                         startOfCommand = endOfCommand;
                         //SeperatedVector.at(SeperatedVector.size()-1).pop_back();
@@ -1320,13 +1332,13 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
                         //cout << "Reached the end of the Vector" << endl;
                         //vector<string > SeperatedVector;
                         for(int m = startOfCommand; m < VectorInput->size(); m++) {
-                            //cout << VectorInput->at(m) << endl;
+                            cout << VectorInput->at(m) << endl;
                             string str = VectorInput->at(m);
                             str.erase(std::remove(str.begin(), str.end(), '\"'), str.end());    
                             SeperatedVector.push_back(str);
                         }
                         // for (int z = 0; z < SeperatedVector.size(); z++) {
-                        //     cout << SeperatedVector.at(z) << endl;
+                            // cout << SeperatedVector.at(z) << endl;
                         // }
                         Command* command = new Command(SeperatedVector);
                         this->CommandLine.push_back(command);
@@ -1343,7 +1355,7 @@ void FullCommand::parse(int startOfCommand, int endOfCommand, Input* VectorInput
             //cout << "Reached the end of the Vector" << endl;
             vector<string > SeperatedVector;
             for(int m = startOfCommand; m < VectorInput->size(); m++) {
-                // cout << VectorInput->at(m) << endl;
+                cout << VectorInput->at(m) << endl;
                 string str = VectorInput->at(m);
                 str.erase(std::remove(str.begin(), str.end(), '\"'), str.end());
                 str.erase(std::remove(str.begin(), str.end(), '('), str.end());
@@ -1378,10 +1390,10 @@ bool FullCommand::execute() {
         int counter = 0;
         //cout << StringConnectors.size() << endl;
         //cout << "-------------------------------------------------------------" << endl;
-        // for (int a = 0; a < StringConnectors.size(); a++) {
-        //     cout << StringConnectors.at(a) << endl;
-        // }
-       // cout << "-------------------------------------------------------------" << endl;
+        for (int a = 0; a < StringConnectors.size(); a++) {
+            //cout << StringConnectors.at(a) << endl;
+        }
+        //cout << "-------------------------------------------------------------" << endl;
         for (int i = 0; i < StringConnectors.size(); i++) {
             //cout << "Connectors exist" << endl;
             if (StringConnectors.at(i) == ";") {
@@ -1431,7 +1443,7 @@ bool FullCommand::execute() {
             }
         }
         for (int j = 0; j < Connectors.size(); ++j) {
-          // cout << "Executing connector: " << endl;
+           //cout << "Executing connector: " << endl;
             Connectors.at(j)->execute();
         }
     }
