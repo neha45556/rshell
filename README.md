@@ -147,6 +147,9 @@ dup2()
 
 This command is a system call which duplicates one file descriptor, and then deletes the old file descriptor.
 
+pipe()
+
+It is a form of redirection which sends the output of one program to another program
 
 
 # Development and Testing Roadmap
