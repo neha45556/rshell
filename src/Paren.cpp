@@ -2,17 +2,17 @@
 
 using namespace std;
 
-bool Paren::execute(){
+bool Paren::execute(int in, int out){
     //cout << "Paren execute" << endl;
     if (this->Connectors.empty()) {
-       // cout << "Executing on Commands" << endl;
+        //cout << "Executing on Commands" << endl;
         for (int i = 0; i < this->CommandLine.size(); i++) {
-        //    cout << "Executing command" << endl;
-            return this->CommandLine.at(i)->execute();
+            //cout << "Executing command" << endl;
+            return this->CommandLine.at(i)->execute(0, 1);
         }
     }
     for (int i = 0; i < this->Connectors.size(); i++) {
-        this->Connectors.at(i)->execute();
+        this->Connectors.at(i)->execute(0, 1);
     }
 }
 

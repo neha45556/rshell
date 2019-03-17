@@ -1,14 +1,14 @@
-#ifndef SEMICOLON_H
-#define SEMICOLON_H
+#ifndef LESSINPUT_H
+#define LESSINPUT_H
 
 #include "connector.hpp"
 
-class Semicolon : public Connector {
+class LessInput : public Connector {
     private:
         // bool (Base* );
     public:
-        Semicolon() { };
-        Semicolon(Base* , Base* );
+        LessInput() { };
+        LessInput(Base* , Base* );
         bool execute(int, int);
         bool checkFlag();
         void setFlagTrue() { };

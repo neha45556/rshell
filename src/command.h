@@ -2,7 +2,7 @@
 #define COMMAND_H
 
 #include "Base.hpp"
-#include "test.h"
+#include "test.cpp"
 #include <iostream>
 #include <algorithm> 
 #include <cstring>
@@ -27,9 +27,10 @@ class Command : public Base {
         Command(vector<string > SingleCommand);
         bool checkFlag();
         void setFlagTrue();
-        bool execute();
+        bool execute(int, int);
         string at(int ); 
         int size();
+        vector<string> get_data();
 };
 
 #endif

@@ -4,11 +4,11 @@ Semicolon::Semicolon(Base* lhs, Base* rhs) {
     this->first = lhs;
     this->next = rhs;
 }
-bool Semicolon::execute() {
+bool Semicolon::execute(int in, int out) {
     //cout << "Enters semicolon execute:" << endl; 
     if(first->checkFlag()) {
         //cout << "First command has been executed" << endl;
-        if(next->execute()) {
+        if(next->execute(in, out)) {
             //cout << "Next command successfully executed" << endl;
             return true;
         }
@@ -20,9 +20,9 @@ bool Semicolon::execute() {
     }
     else {
         //cout << "First command hasn't been executed" << endl;
-        if(first->execute()) {
+        if(first->execute(in, out)) {
             //cout << "First command executed successfully" << endl;
-            if(next->execute()) {
+            if(next->execute(in, out)) {
                 //cout << "Next command successfully executed" << endl;
                 return true;
             }
@@ -34,7 +34,7 @@ bool Semicolon::execute() {
         }
         else {
             //cout << "first command failed to execute" << endl;
-            if(next->execute()) {
+            if(next->execute(in, out)) {
                 //cout << "Next command successfully executed" << endl;
                 return true;
             }

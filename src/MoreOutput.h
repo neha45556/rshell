@@ -1,14 +1,15 @@
-#ifndef SEMICOLON_H
-#define SEMICOLON_H
+#ifndef MOREOUTPUT_H
+#define MOREOUTPUT_H
 
 #include "connector.hpp"
 
-class Semicolon : public Connector {
+class MoreOutput : public Connector {
     private:
         // bool (Base* );
+        string type = ">";
     public:
-        Semicolon() { };
-        Semicolon(Base* , Base* );
+        MoreOutput() { };
+        MoreOutput(Base* , Base* );
         bool execute(int, int);
         bool checkFlag();
         void setFlagTrue() { };

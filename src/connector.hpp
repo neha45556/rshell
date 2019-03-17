@@ -16,8 +16,11 @@ class Connector : public Base {
             this->first = lhs;
             this->first = rhs;
         }
-        virtual bool execute() = 0;
+        virtual bool execute(int, int) = 0;
         virtual bool checkFlag() = 0;
+        string at(int ) { };
+        int size() { };
+        vector<string> get_data() { };
 };
 
 #endif

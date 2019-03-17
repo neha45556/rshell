@@ -12,7 +12,7 @@ class And : public Connector {
         void deleteHashtag() { };
         bool findHashtag() { };
         void printCommand() { };
-        bool execute();
+        bool execute(int, int);
         bool checkFlag();
         void setFlagTrue() { };
 };
