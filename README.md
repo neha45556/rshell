@@ -154,7 +154,9 @@ We found that execvp() will be how we execute commands in our shell. It takes in
 9. Write unit test test_command_tests.sh : Marc Jimenez
 10. Write unit test_symbolic_tests.sh : Neha Gupta
 11. Write precedence_tests.sh : Marc Jimenez
-
+12. Write input_redirection_tests.sh : Neha Gupta
+13. Write output_redirection_tests.sh : Marc Jimenez
+14. Write pipe_operator_tests.sh : Neha Gupta
 
 
 
