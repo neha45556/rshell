@@ -14,6 +14,7 @@ In this program our goal is to develop a command shell called rshell. This progr
   4. Ability to interact with both quotes(" ") and the hashtag symbol(#) to alter the output of certain commands.
   5. Able to check for file and directory existence through the use of the test command and brackets
   6. The precedence operator () will change the precedence of the execution of commands
+  7. Be able to handle input redirection, output redirection, and piping
 
 ## Connectors
 
@@ -21,7 +22,7 @@ Connectors will be implemented in our pattern through the use of three different
 
 ## Method
 
-The program will implement this through a composite pattern from which the classes known as **_FullCommand_**, **_connector_**, **_Paren_**, **_Test_**, **_MultCmd_**, **_command_** are derived from a shared base interface class known as **_base_**. There are three classes which derive from **_connector_** called **_and_** , **_or_** , and **_semicolon_**. We have an additional class called **_input_** which stores the client's input and parses through the char* array. Our client will first create a new **_input_** object and call the function known as _getInput()_. They will be then prompted to input a command that we will then tokenize using _strtok()_ into two seperate vectors encapsulated in the **_input_** class that holds the commmands and one that holds the connectors. From there they will create a new **_FullCommand_** object that they will immediately call two functions on it, known as _parse()_ and _execute_. This will take in the vectors from the object **_input_** and create two new vectors of type **_base_** pointer that holds **_commands_** and **_connectors_**. From there the client will finally call execute on their **_FullCommand_** object and in turn execute the correct output using both vectors. 
+The program will implement this through a composite pattern from which the classes known as **_FullCommand_**, **_connector_**, **_Paren_**, **_Test_**, **_MultCmd_**, **_command_** , **_SymbolTree_** are derived from a shared base interface class known as **_base_**. There are six classes which derive from **_connector_** called **_and_** , **_or_** , **_semicolon_** , **_MoreInput_** , **_LessInput_** , **_pipe_** , **_doubleOut_** . We have an additional class called **_input_** which stores the client's input and parses through the char* array. Our client will first create a new **_input_** object and call the function known as _getInput()_. They will be then prompted to input a command that we will then tokenize using _strtok()_ into two seperate vectors encapsulated in the **_input_** class that holds the commmands and one that holds the connectors. From there they will create a new **_FullCommand_** object that they will immediately call two functions on it, known as _parse()_ and _execute_. This will take in the vectors from the object **_input_** and create two new vectors of type **_base_** pointer that holds **_commands_** and **_connectors_**. From there the client will finally call execute on their **_FullCommand_** object and in turn execute the correct output using both vectors. In our program when our user's input consists of a <,>,|,>> a **_SymbolTree_** is created to direct output or recieve input from a file. 
 
 # Diagram
 
@@ -56,6 +57,16 @@ The class **_test_** derived from Base checks whether the file or directory exis
 The class **_Paren_** derived from Base changes the precedence of the execution of commands,connectors, and grouped commands.
 
 The class **_MultCmd_** has a vector of type Base* called CommandLine which identifies whether the input has multiple commands. This class derives from the Base class and has functionality which keeps tracks of what is inside the precedence operator (). 
+
+The class **_MoreInput_** has the redirection (>) symbol and appends input to the file and if something already exists it replaces its contents.
+
+The class **_LessOutput_**  has the redirection (<) symbol and uses the input from a file as input instead of the keyboard.
+
+The class **_pipe_** connects the standard input of one command to the standard input of another.
+
+**_SymbolTree_** class builds a tree and performs the input and output redirection, and pipe if any of those exist in the command line. 
+
+**_doubleOut_** class has the symbol (>>) which appends to a file rather than replace the contents it adds to what already exists.
 
 # Test Command
 
