@@ -60,17 +60,17 @@ TEST(SingleCommand, CommandEcho) {
    // EXPECT_EQ(expectedOutput2, output2); 
 ///}
 
-TEST(SingleCommand, WrongCommand) {
-    char inputArray [] = "wrong hello";
-    Input* input = new Input(inputArray);
-    FullCommand* command = new FullCommand();
-    command->parse(0, 0, input);
-    testing::internal::CaptureStdout();
-    command->execute(0, 1);
-    string output = testing::internal::GetCapturedStdout();
-    string expectedOutput = "";
-    EXPECT_EQ("", output);
-}
+//TEST(SingleCommand, WrongCommand) {
+//    char inputArray [] = "wrong hello";
+//    Input* input = new Input(inputArray);
+//    FullCommand* command = new FullCommand();
+//    command->parse(0, 0, input);
+//    testing::internal::CaptureStdout();
+//    command->execute(0, 1);
+//    string output = testing::internal::GetCapturedStdout();
+//    string expectedOutput = "";
+//   EXPECT_EQ("", output);
+//}
 TEST(MultipleCommand, QuotesWithConnectors1) {
     char inputArray [] = "echo \"hello && world\"";
     Input* input = new Input(inputArray);
@@ -373,10 +373,6 @@ int main(int argc, char**argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
-
-
-
-
 
 
 
