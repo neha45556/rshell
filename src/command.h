@@ -2,7 +2,7 @@
 #define COMMAND_H
 
 #include "Base.hpp"
-#include "test.cpp"
+#include "test.h"
 #include <iostream>
 #include <algorithm> 
 #include <cstring>

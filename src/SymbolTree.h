@@ -6,8 +6,9 @@
 #include "MoreOutput.h"
 #include "pipe.h"
 #include "DoubleOut.h"
-// #include "Paren.h"
-// #include "MultCmd.h"
+#include "command.h"
+#include "Paren.h"
+#include "MultCmd.h"
 #include <iostream>
 #include <algorithm> 
 #include <cstring>

@@ -22,7 +22,11 @@ ADD_EXECUTABLE(rshell
 	${PROJECT_SOURCE_DIR}/src/Paren.cpp
 	${PROJECT_SOURCE_DIR}/src/MultCmd.cpp
 	${PROJECT_SOURCE_DIR}/src/test.cpp
-
+	${PROJECT_SOURCE_DIR}/src/SymbolTree.cpp
+	${PROJECT_SOURCE_DIR}/src/LessInput.cpp
+	${PROJECT_SOURCE_DIR}/src/MoreOutput.cpp
+	${PROJECT_SOURCE_DIR}/src/pipe.cpp
+	${PROJECT_SOURCE_DIR}/src/DoubleOut.cpp
 )
 
 ADD_EXECUTABLE(test
@@ -38,6 +42,12 @@ ADD_EXECUTABLE(test
 	${PROJECT_SOURCE_DIR}/src/Paren.cpp
 	${PROJECT_SOURCE_DIR}/src/MultCmd.cpp
 	${PROJECT_SOURCE_DIR}/src/test.cpp
+	${PROJECT_SOURCE_DIR}/src/SymbolTree.cpp
+        ${PROJECT_SOURCE_DIR}/src/LessInput.cpp
+        ${PROJECT_SOURCE_DIR}/src/MoreOutput.cpp
+        ${PROJECT_SOURCE_DIR}/src/pipe.cpp
+        ${PROJECT_SOURCE_DIR}/src/DoubleOut.cpp
+
 )
 
 TARGET_LINK_LIBRARIES(test gtest)

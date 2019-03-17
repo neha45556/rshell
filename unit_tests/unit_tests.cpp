@@ -1,6 +1,10 @@
 #include "gtest/gtest.h"
 #include "input.h"
 #include "command.h"
+#include "SymbolTree.h"
+#include "LessInput.h"
+#include "MoreOutput.h"
+#include "DoubleOut.h"
 #include "FullCommand.h"
 #include "semicolon.h"
 #include "and.h"
@@ -20,7 +24,7 @@ TEST(SingleCommand, CommandEcho) {
     FullCommand* command = new FullCommand();
     command->parse(0, 0, input);
     testing::internal::CaptureStdout();
-    command->execute();
+    command->execute(0, 1);
     string output = testing::internal::GetCapturedStdout();
     string expectedOutput = "hello\n";
     EXPECT_EQ(expectedOutput, output);
@@ -31,14 +35,14 @@ TEST(SingleCommand, MKDirAndRM) {
     Input* input = new Input(inputArray);
     FullCommand* command = new FullCommand();
     command->parse(0, 0, input);
-    command->execute();
+    command->execute(0, 1);
     
     char input2Array [] = "ls -a";
     Input* inputCheck = new Input(input2Array);
     FullCommand* command2 = new FullCommand();
     command2->parse(0, 0, inputCheck);
     testing::internal::CaptureStdout();
-    command2->execute();
+    command2->execute(0, 1);
     string output = testing::internal::GetCapturedStdout();
     string expectedOutput = ".\n..\na.out\nbin\nCMakeCache.txt\nCMakeFiles\ncmake_install.cmake\nCMakeLists.txt\n.git\n.gitignore\n.gitmodules\ngoogletest\nhello\nimages\nintegration_tests\nlib\nMakefile\nnames.txt\nREADME.md\nrshell\nsrc\ntest\nunit_tests\n";
     EXPECT_EQ(expectedOutput, output);
@@ -47,10 +51,10 @@ TEST(SingleCommand, MKDirAndRM) {
     Input* input3 = new Input(input3Array);
     FullCommand* command3  = new FullCommand();
     command3->parse(0, 0, input3);
-    command3->execute();
+    command3->execute(0, 1);
     
     testing::internal::CaptureStdout();
-    command2->execute();
+    command2->execute(0, 1);
     string output2 = testing::internal::GetCapturedStdout();
     string expectedOutput2 = ".\n..\na.out\nbin\nCMakeCache.txt\nCMakeFiles\ncmake_install.cmake\nCMakeLists.txt\n.git\n.gitignore\n.gitmodules\ngoogletest\nimages\nintegration_tests\nlib\nMakefile\nnames.txt\nREADME.md\nrshell\nsrc\ntest\nunit_tests\n";
     EXPECT_EQ(expectedOutput2, output2); 
@@ -62,40 +66,40 @@ TEST(SingleCommand, WrongCommand) {
     FullCommand* command = new FullCommand();
     command->parse(0, 0, input);
     testing::internal::CaptureStdout();
-    command->execute();
+    command->execute(0, 1);
     string output = testing::internal::GetCapturedStdout();
     string expectedOutput = "";
     EXPECT_EQ("", output);
 }
-TEST(MultipleCommand, QuotesWithConnectors) {
+TEST(MultipleCommand, QuotesWithConnectors1) {
     char inputArray [] = "echo \"hello && world\"";
     Input* input = new Input(inputArray);
     FullCommand* command = new FullCommand();
     command->parse(0, 0, input);
     testing::internal::CaptureStdout();
-    command->execute();
+    command->execute(0, 1);
     string output = testing::internal::GetCapturedStdout();
     string expectedOutput = "hello && world\n";
     EXPECT_EQ(expectedOutput, output);
 }
-TEST(MultipleCommand, QuotesWithConnectors) {
+TEST(MultipleCommand, QuotesWithConnectors2) {
     char inputArray [] = "echo \"hello && world\"; echo \"Basket && ball\"";
     Input* input = new Input(inputArray);
     FullCommand* execute = new FullCommand();
     execute->parse(0, 0, input);
     testing::internal::CaptureStdout();
-    execute->execute();
+    execute->execute(0, 1);
     string output = testing::internal::GetCapturedStdout();
     string expectedOutput = "hello && world\nBasket && ball\n";
     EXPECT_EQ(expectedOutput, output);
 }
-TEST(MultipleCommand, QuotesWithConnectors2) {
+TEST(MultipleCommand, QuotesWithConnectors3) {
 	char inputArray [] = "echo \"hello || world\" || echo \"shouldn't print\" && echo \"also no print\"";
 	Input* input = new Input(inputArray);
 	FullCommand* execute = new FullCommand();
 	execute->parse(0, 0, input);
 	testing::internal::CaptureStdout();
-	execute->execute();
+	execute->execute(0, 1);
 	string output = testing::internal::GetCapturedStdout();
 	string expectedOutput = "hello || world\n";
 	EXPECT_EQ(expectedOutput, output);
@@ -106,7 +110,7 @@ TEST(SingleCommand, Comment) {
 	FullCommand* execute = new FullCommand();
 	execute->parse(0, 0, input);
 	testing::internal::CaptureStdout();
-	execute->execute();
+	execute->execute(0, 1);
 	string output = testing::internal::GetCapturedStdout();
 	string expectedOutput = "hello\n";
 	EXPECT_EQ(expectedOutput, output);   
@@ -117,7 +121,7 @@ TEST(SingleCommand, CommentWithQuotes) {
 	FullCommand* command = new FullCommand();
 	command->parse(0, 0, input);
 	testing::internal::CaptureStdout();
-	command->execute();
+	command->execute(0, 1);
 	string output = testing::internal::GetCapturedStdout();
 	string expectedOutput = "hello # world\n";
 	EXPECT_EQ(expectedOutput, output);
@@ -129,7 +133,7 @@ TEST(test1, bracketE){
 	FullCommand* command = new FullCommand();
 	command->parse(0,0,input);
 	testing::internal::CaptureStdout();
-	command->execute();
+	command->execute(0, 1);
 	string output = testing::internal::GetCapturedStdout();
 	string expectedOutput = "(TRUE)\n";
 	EXPECT_EQ(expectedOutput, output);
@@ -140,7 +144,7 @@ TEST(test2, bracketF){
         FullCommand* command = new FullCommand();
         command->parse(0,0,input);
         testing::internal::CaptureStdout();
-        command->execute();
+        command->execute(0, 1);
         string output = testing::internal::GetCapturedStdout();
         string expectedOutput = "(FALSE)\n";
         EXPECT_EQ(expectedOutput, output);
@@ -152,7 +156,7 @@ TEST(testtwo, bracketD){
         FullCommand* command = new FullCommand();
         command->parse(0,0,input);
         testing::internal::CaptureStdout();
-        command->execute();
+        command->execute(0, 1);
         string output = testing::internal::GetCapturedStdout();
         string expectedOutput = "(TRUE)\n";
         EXPECT_EQ(expectedOutput, output);
@@ -163,7 +167,7 @@ TEST(test3, wordnoFlag){
         FullCommand* command = new FullCommand();
         command->parse(0,0,input);
         testing::internal::CaptureStdout();
-        command->execute();
+        command->execute(0, 1);
         string output = testing::internal::GetCapturedStdout();
         string expectedOutput = "(TRUE)\n";
         EXPECT_EQ(expectedOutput, output);
@@ -174,7 +178,7 @@ TEST(test4, wordF){
         FullCommand* command = new FullCommand();
         command->parse(0,0,input);
         testing::internal::CaptureStdout();
-        command->execute();
+        command->execute(0, 1);
         string output = testing::internal::GetCapturedStdout();
         string expectedOutput = "(TRUE)\n";
         EXPECT_EQ(expectedOutput, output);
@@ -185,7 +189,7 @@ TEST(test5, wordE){
         FullCommand* command = new FullCommand();
         command->parse(0,0,input);
         testing::internal::CaptureStdout();
-        command->execute();
+        command->execute(0, 1);
         string output = testing::internal::GetCapturedStdout();
         string expectedOutput = "(TRUE)\n";
         EXPECT_EQ(expectedOutput, output);
@@ -196,7 +200,7 @@ TEST(test6, wordD){
 	FullCommand* command = new FullCommand();
 	command->parse(0,0,input);
 	testing::internal::CaptureStdout();
-	command->execute();
+	command->execute(0, 1);
 	string output = testing::internal::GetCapturedStdout();
 	string expectedOutput = "(TRUE)\n";
 	EXPECT_EQ(expectedOutput, output);
@@ -207,7 +211,7 @@ TEST(SingleCommand, SingleParen) {
         FullCommand* command = new FullCommand();
         command->parse(0,0,input);
         testing::internal::CaptureStdout();
-        command->execute();
+        command->execute(0, 1);
         string output = testing::internal::GetCapturedStdout();
         string expectedOutput = "hello\n";
         EXPECT_EQ(expectedOutput, output);	
@@ -218,7 +222,7 @@ TEST(SingleCommand, MultipleParen) {
         FullCommand* command = new FullCommand();
         command->parse(0,0,input);
         testing::internal::CaptureStdout();
-        command->execute();
+        command->execute(0, 1);
         string output = testing::internal::GetCapturedStdout();
         string expectedOutput = "1\n1\n2\n";
         EXPECT_EQ(expectedOutput, output); 
@@ -229,7 +233,7 @@ TEST(SingleCommand, MultipleParen2) {
         FullCommand* command = new FullCommand();
         command->parse(0,0,input);
         testing::internal::CaptureStdout();
-        command->execute();
+        command->execute(0, 1);
         string output = testing::internal::GetCapturedStdout();
         string expectedOutput = "1\n2\n";
         EXPECT_EQ(expectedOutput, output);	
@@ -240,7 +244,7 @@ TEST(SingleCommand, MultipleParen3) {
         FullCommand* command = new FullCommand();
         command->parse(0,0,input);
         testing::internal::CaptureStdout();
-        command->execute();
+        command->execute(0, 1);
         string output = testing::internal::GetCapturedStdout();
         string expectedOutput = "1\n2\n4\n5\n";
         EXPECT_EQ(expectedOutput, output);
@@ -251,7 +255,7 @@ TEST(MultipleCommand, SingleParenWithCMD) {
 	FullCommand* command = new FullCommand();
 	command->parse(0, 0, input);
 	testing::internal::CaptureStdout();
-	command->execute();
+	command->execute(0, 1);
 	string output = testing::internal::GetCapturedStdout();
 	string expectedOutput = "1\n2\n3\n";
 	EXPECT_EQ(expectedOutput, output);
@@ -262,7 +266,7 @@ TEST(MultipleCommand, MultipleParen) {
         FullCommand* command = new FullCommand();
         command->parse(0, 0, input);
         testing::internal::CaptureStdout();
-        command->execute();
+        command->execute(0, 1);
         string output = testing::internal::GetCapturedStdout();
         string expectedOutput = "1\n2\n4\n";
         EXPECT_EQ(expectedOutput, output);
@@ -273,7 +277,7 @@ TEST(SingleCommand, ParenQuotes) {
         FullCommand* command = new FullCommand();
         command->parse(0, 0, input);
         testing::internal::CaptureStdout();
-        command->execute();
+        command->execute(0, 1);
         string output = testing::internal::GetCapturedStdout();
         string expectedOutput = "hello world\n";
         EXPECT_EQ(expectedOutput, output);
@@ -284,7 +288,7 @@ TEST(SingleCommand, ParenQuotesCon) {
         FullCommand* command = new FullCommand();
         command->parse(0, 0, input);
         testing::internal::CaptureStdout();
-        command->execute();
+        command->execute(0, 1);
         string output = testing::internal::GetCapturedStdout();
         string expectedOutput = "1; 2\n3 && 4\n5 || 6\n";
         EXPECT_EQ(expectedOutput, output);

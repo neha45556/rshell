@@ -2,6 +2,7 @@
 #define BASE_H
 
 #include <iostream>
+#include <vector>
 
 using namespace std;
 
