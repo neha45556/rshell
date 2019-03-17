@@ -139,7 +139,13 @@ execvp()
 
 We found that execvp() will be how we execute commands in our shell. It takes in two arguments first being the file we wish to execute and then an array of null-terminated strings that represent the appropriate arguments to the file. 
 
+file descriptor
 
+It is a number which identifies a file. The first three file descriptors are set by default at stdin(0), stdout(1), and stderr(2).
+
+dup2()
+
+This command is a system call which duplicates one file descriptor, and then deletes the old file descriptor.
 
 
 
