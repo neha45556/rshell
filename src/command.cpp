@@ -44,15 +44,15 @@ Command::Command(vector<string > enteredVector) {
 //         // cout << this->SingleCommand.at(i) << endl;
 //     }
 // }
-bool Command::execute() {
-    //cout << "Enter Single Execute" << endl;
+bool Command::execute(int in, int out) {
+    // cout << "Enter Single Execute" << endl;
     // //cout << this->SingleCommand.size() << endl;
     // for (int i = 0; i < this->SingleCommand.size(); i++) {
     //     cout << "Iterated through SingleCommand" << endl;
     //     cout << this->SingleCommand.at(i) << endl;
     // }
-    // for (int x = 0; x < SingleCommand.size(); x++) {
-    //     cout << SingleCommand.at(x) << endl;
+    // for (int x = 0; x < SymbolCommands.size(); x++) {
+    //     cout << SymbolCommands.at(x) << endl;
     // }
     for (int j = 0; j < SingleCommand.size(); j++) {
         if (SingleCommand.at(j) == "exit") {
@@ -69,8 +69,8 @@ bool Command::execute() {
         argv[i] = &this->SingleCommand.at(i)[0];
     }
     if(SingleCommand.at(0) == "[" || SingleCommand.at(0) == "test"){
-       //cout << "this" << endl;
-       Test* t1 = new Test(SingleCommand); 
+        //cout << "this" << endl;
+        Test* t1 = new Test(SingleCommand); 
         t1->parse();
     }
     argv[this->SingleCommand.size()] = NULL;
@@ -78,6 +78,24 @@ bool Command::execute() {
     if (childpid < 0) {
         perror("fork() failed");
         exit(-1);
+    }
+    else if (childpid == 0) {
+        //cout << "Child process" << endl;
+        if (dup2(in,0) == -1) {
+            //cout << "dup in" << endl;
+            perror("dup2");
+            return false;
+        }
+        if (dup2(out,1) == -1) {
+            //cout << "dup out" << endl;
+            perror("dup2");
+            return false;
+        }
+        if (-1 == execvp(cmd, argv)) {
+            perror("Command not found");
+            return false;
+            exit(-1);
+        }
     }
     else if (childpid > 0) {
         //cout << "Parent" << endl;
@@ -91,46 +109,6 @@ bool Command::execute() {
             return true;
         }
     }
-    else {
-        if (-1 == execvp(cmd, argv)) {
-            perror("Command not found");
-            exit(-1);
-        }
-        exit(0);
-        // else {
-        //     this->flag = true;
-        //     return true;
-        // }
-    }
-    // if (childpid == 0) {
-    //     //cout << "In child process: " << endl;
-    //     waitpid(childpid, NULL, 0);
-    //     execvp(cmd, argv);
-    // }
-    // if (childpid > 0) {
-    //     int status;
-    //     //cout << "In parent process: " << endl;
-    //     waitpid(childpid, &status, 0);
-    // }
-    // else if (childpid == -1) {
-    //     perror("fork() failed");
-    //     //return false;
-    // }
-    // else {
-    //     if (-1 == execvp(cmd, argv)) {
-    //         perror("Command not found");
-    //         return false;
-    //         exit(1);
-    //     }
-    //     else {
-    //         this->flag = true;
-    //         return true;
-    //     }
-    // }
-    //out << "end of the function lol" << endl;
-    // this->flag = true;
-    // return true;
-    
 }
 bool Command::checkFlag() {
     if (this->flag) {
@@ -149,3 +127,6 @@ string Command::at(int num) {
 int Command::size() {
     return this->SingleCommand.size();
 } 
+vector<string> Command::get_data() {
+    return this->SingleCommand;
+}

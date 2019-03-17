@@ -26,11 +26,14 @@ class Paren : public Base {
     public:
         Paren() { };
         // virtual void printCommand() = 0;
-        bool execute();
+        bool execute(int, int);
         void addCommand(Base* );
         void addConnector(Base* );
         bool checkFlag();
         void setFlagTrue() { };
+        string at(int ) { };
+        int size() { };
+        vector<string> get_data() { };
 };
 
 #endif

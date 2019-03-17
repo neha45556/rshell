@@ -23,11 +23,14 @@ class Input {
         vector<string> Connectors;
         void populateVector();
         void populateConnectors(char []);
+        //bool flag = false;
     public:
         Input() { };
         Input(char []);
         //void parse(int, int);
         void getInput();
+        //bool checkFlag();
+        //void setFlagFalse();
         string at(int );
         string ConAt(int );
         int size();

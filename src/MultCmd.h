@@ -4,6 +4,7 @@
 #include "Base.hpp"
 #include "input.h"
 #include "command.h"
+#include "SymbolTree.h"
 #include "semicolon.h"
 #include "and.h"
 #include "or.h"
@@ -32,12 +33,15 @@ class MultCmd : public Base {
         vector<string> StringConnectors;
     public:
         MultCmd() { };
-        bool execute();
+        bool execute(int, int);
         bool checkFlag();
         void setFlagTrue() { };
         void addConnector(string );
         void addCommand(Base* );
         void addManyCommands(int , int , vector<string> );
+        string at(int ) { };
+        int size() { };
+        vector<string> get_data() { };
         //void printCommand();
 };
 

@@ -157,31 +157,34 @@ bool MultCmd::checkFlag() {
     return this->CommandLine.at(CommandLine.size() - 1)->checkFlag();
 }
 
-bool MultCmd::execute() {
+bool MultCmd::execute(int in, int out) {
     //cout << "Mult Commands" << endl;
     if (this->StringConnectors.empty()) {
-       // cout << "No connectors" << endl;
+        //cout << "No connectors" << endl;
         for (int i = 0; i < CommandLine.size(); i++) {
-            CommandLine.at(i)->execute();
+            CommandLine.at(i)->execute(0, 1);
         }    
     }
     else {
         int counter = 0;
-        //cout << StringConnectors.size() << endl;
-        //cout << "-------------------------- -----------------------------------" << endl;
+        // cout << StringConnectors.size() << endl;
+        // cout << "-------------------------- -----------------------------------" << endl;
         // for (int a = 0; a < StringConnectors.size(); a++) {
         //     cout << StringConnectors.at(a) << endl;
         // }
-        //cout << "-------------------------------------------------------------" << endl;
+        // cout << "-------------------------------------------------------------" << endl;
         for (int i = 0; i < StringConnectors.size(); i++) {
             //cout << "Connectors exist" << endl;
             if (StringConnectors.at(i) == ";") {
+                //cout << "Found SEMI" << endl;
                 Base* lhs = CommandLine.at(counter);
                 Base* rhs = nullptr;
                 if ((counter+1) > CommandLine.size() - 1) {
+                    //cout << "SET RHS TO NULL" << endl;
                     rhs = nullptr;
                 }
                 else {
+                    //cout << "SET RHS" << endl;
                     rhs = CommandLine.at(counter + 1);
                 }
                 Semicolon* semi = new Semicolon(lhs, rhs);
@@ -193,9 +196,11 @@ bool MultCmd::execute() {
                 Base* lhs = CommandLine.at(counter);
                 Base* rhs = nullptr;
                 if ((counter+1) > CommandLine.size() - 1) {
+                    //cout << "SET RHS TO NULL" << endl;
                     rhs = nullptr;
                 }
                 else {
+                    //cout << "SET RHS" << endl;
                     rhs = CommandLine.at(counter + 1);
                 }
                 Or* OR = new Or(lhs, rhs);
@@ -207,11 +212,12 @@ bool MultCmd::execute() {
                 Base* lhs = CommandLine.at(counter);
                 //cout << "Set LHS" << endl;
                 Base* rhs = nullptr;
-                //cout << "Set RHS" << endl;
                 if ((counter+1) > CommandLine.size() - 1) {
+                    //cout << "SET RHS TO NULL" << endl;
                     rhs = nullptr;
                 }
                 else {
+                    //cout << "SET RHS" << endl;
                     rhs = CommandLine.at(counter + 1);
                 }
                 And* AND = new And(lhs, rhs);
@@ -223,7 +229,7 @@ bool MultCmd::execute() {
         }
         for (int j = 0; j < this->Connectors.size(); ++j) {
             //cout << "Executing on multCmd connectors" << endl;
-            this->Connectors.at(j)->execute();
+            this->Connectors.at(j)->execute(0, 1);
             
         }
     }

@@ -1,5 +1,5 @@
-#ifndef EXECUTE_H
-#define EXECUTE_H
+#ifndef FULLCOMMAND_H
+#define FULLCOMMAND_H
 
 #include "Base.hpp"
 #include "input.h"
@@ -8,6 +8,9 @@
 #include "semicolon.h"
 #include "and.h"
 #include "or.h"
+#include "LessInput.h"
+#include "MoreOutput.h"
+#include "SymbolTree.h"
 #include <iostream>
 #include <algorithm>
 #include <cstring>
@@ -32,10 +35,12 @@ class FullCommand : public Base {
         FullCommand() { };
         void parse(int, int, Input* );
         void addCommand(Base* );
-        bool execute();
+        bool execute(int , int);
         bool checkFlag() { };
         void setFlagTrue() { };
-        
+        string at(int ) { };
+        int size() { };
+        vector<string> get_data() { };
 };
 
 #endif

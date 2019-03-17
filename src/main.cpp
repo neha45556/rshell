@@ -1,60 +1,50 @@
-#include "input.h"
-#include "command.h"
-#include "Paren.h"
-#include "test.h"
-#include "FullCommand.h"
-#include "MultCmd.h"
-#include "semicolon.h"
-#include "and.h"
-#include "or.h"
+#include "input.cpp"
+#include "command.cpp"
+#include "Paren.cpp"
+//#include "test.cpp"
+#include "SymbolTree.cpp"
+#include "LessInput.cpp"
+#include "MoreOutput.cpp"
+//#include "pipe.cpp"
+#include "DoubleOut.cpp"
+#include "FullCommand.cpp"
+#include "MultCmd.cpp"
+#include "semicolon.cpp"
+#include "and.cpp"
+#include "or.cpp"
+#include "pipe.cpp"
 #include "Base.hpp"
 #include <iostream>
 #include <string>
 #include <cstring>
-
 using namespace std;
 
 int main () {
-/*
-	char inputArray[] = "echo \"1; 2\"; echo \"3 && 4\"; echo \"5 || 6\"";
-        Input* input = new Input(inputArray);
-        FullCommand* command = new FullCommand();
-        command->parse(0, 0, input);
-        command->execute();
-*/
-
         bool userExit = false;
         while (!userExit) {
             Input* input = new Input();
             input->getInput();
-		if (input->size() == 0) {
-
-		}		
-		else {
-            		if (input->at(0) == "exit") {
-               			userExit = true;
-               			exit(0);
-           		}
-		}
+            if (input->size() == 0) {
+                
+            }
+            else {
+                if (input->at(0) == "exit") {
+                    userExit = true;
+                    exit(0);
+                }
+            }
             FullCommand* command = new FullCommand();
             command->parse(0, 0, input);
-            command->execute();
+            command->execute(0, 1);
         }
-        //char input1 [] = "butt";
-        // char input2[] = "echo hello; echo hello2";
-        //Input* input = new Input(input1);
-        // Input* input = new Input();
-        // input->getInput();
-        // //cout << "Gets input" << endl;
+        
+        
+        // char inputArray[] = "echo \"1; 2\"; echo \"3 && 4\"; echo \"5 || 6\"";
+        // Input* input = new Input(inputArray);
         // FullCommand* command = new FullCommand();
-        // //cout << "Creates FullCommand" << endl;
         // command->parse(0, 0, input);
-        // //cout << "Exits parse" << endl;
         // command->execute();
-        // Execute* execute = new Execute();
-        // execute->populateExecute(0, 0, input);
-        // execute->populateExecuteConnectors(input);
-        // execute->execute();
+        
         
     return 0;
 }
