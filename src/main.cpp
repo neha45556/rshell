@@ -15,6 +15,14 @@
 using namespace std;
 
 int main () {
+/*
+	char inputArray[] = "echo \"1; 2\"; echo \"3 && 4\"; echo \"5 || 6\"";
+        Input* input = new Input(inputArray);
+        FullCommand* command = new FullCommand();
+        command->parse(0, 0, input);
+        command->execute();
+*/
+
         bool userExit = false;
         while (!userExit) {
             Input* input = new Input();

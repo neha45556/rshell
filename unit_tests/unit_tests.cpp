@@ -1,4 +1,4 @@
-nclude "gtest/gtest.h"
+#include "gtest/gtest.h"
 #include "input.h"
 #include "command.h"
 #include "FullCommand.h"
@@ -25,19 +25,6 @@ TEST(SingleCommand, CommandEcho) {
     string expectedOutput = "hello\n";
     EXPECT_EQ(expectedOutput, output);
 }
-
-TEST(SingleCommand, CommandLS) {
-    char inputArray [] = "ls -a";
-    Input* input = new Input(inputArray);
-    FullCommand* command = new FullCommand();
-    command->parse(0,0,input);
-    testing::internal::CaptureStdout();
-    command->execute();
-    string output = testing::internal::GetCapturedStdout();
-    string expectedOutput = ".\n..\na.out\nbin\nCMakeCache.txt\nCMakeFiles\ncmake_install.cmake\nCMakeLists.txt\n.git\n.gitignore\n.gitmodules\ngoogletest\nimages\nintegration_tests\nlib\nMakefile\nnames.txt\nREADME.md\nrshell\nsrc\ntest\nunit_tests\n";
-    EXPECT_EQ(expectedOutput, output);
-}
-
 
 TEST(SingleCommand, MKDirAndRM) {
     char inputArray [] = "mkdir hello";
@@ -80,20 +67,7 @@ TEST(SingleCommand, WrongCommand) {
     string expectedOutput = "";
     EXPECT_EQ("", output);
 }
-
-TEST(MultipleCommand, ManyCommands) {
-    char inputArray [] = "ls; echo hello && echo 1 || echo 2; echo 3";
-    Input* input = new Input(inputArray);
-    FullCommand* command = new FullCommand();
-    command->parse(0, 0, input);
-    testing::internal::CaptureStdout();
-    command->execute();
-    string output = testing::internal::GetCapturedStdout();
-    string expectedOutput = "a.out\nbin\nCMakeCache.txt\nCMakeFiles\ncmake_install.cmake\nCMakeLists.txt\ngoogletest\nimages\nintegration_tests\nlib\nMakefile\nnames.txt\nREADME.md\nrshell\nsrc\ntest\nunit_tests\nhello\n1\n3\n";
-    EXPECT_EQ(expectedOutput, output);
-}
-
-TEST(SingleCommand, Quotes) {
+TEST(MultipleCommand, QuotesWithConnectors) {
     char inputArray [] = "echo \"hello && world\"";
     Input* input = new Input(inputArray);
     FullCommand* command = new FullCommand();
@@ -305,14 +279,14 @@ TEST(SingleCommand, ParenQuotes) {
         EXPECT_EQ(expectedOutput, output);
 }
 TEST(SingleCommand, ParenQuotesCon) {
-	char inputArray [] = "(echo \"1; 2\"; echo \"3 && 4\"; echo \"5 || 6\")";
+	char inputArray [] = "echo \"1; 2\"; echo \"3 && 4\"; echo \"5 || 6\"";
         Input* input = new Input(inputArray);
         FullCommand* command = new FullCommand();
         command->parse(0, 0, input);
         testing::internal::CaptureStdout();
         command->execute();
         string output = testing::internal::GetCapturedStdout();
-        string expectedOutput = "1;2\n3 && 4\n5 || 6\n";
+        string expectedOutput = "1; 2\n3 && 4\n5 || 6\n";
         EXPECT_EQ(expectedOutput, output);
 }
 
