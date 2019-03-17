@@ -26,7 +26,7 @@ The program will implement this through a composite pattern from which the class
 
 # Diagram
 
-![sample UML Diagram](https://github.com/cs100/assignment-marc-jimenez-neha-gupta/blob/master/images/Assignment43Uml.pdf)
+![sample UML Diagram](https://github.com/cs100/assignment-marc-jimenez-neha-gupta/blob/master/images/Assignment4Uml.jpeg)
 
 # Parsing
 
